@@ -1,0 +1,13 @@
+#wrapper{
+    display: inline-block;
+}
+
+#left{
+    display: inline-block;
+}
+
+#right{
+    float: right;
+}
+
+body {overflow-x: hidden;}
