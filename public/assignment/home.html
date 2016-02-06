@@ -13,8 +13,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
-
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
@@ -46,7 +45,7 @@
 </nav>
 
 <div class="container-fluid">
-    <div class="row">
+    <div class="row row-offcanvas row-offcanvas-left">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="home.html">Home <span class="sr-only">(current)</span></a></li>
@@ -58,27 +57,50 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 
-            <h1> Welcome ~</h1>
-
+            <div class="wrapper">
+                <div class="left" style="float: left">
+                <picture>
+                        <source src="images/form-home.png" media="screen and (min-width: 400px)">
+                        <source src="images/form-home.png">
+                        <img src="images/form-home.png" alt="Form" width="90">
+                    </picture>
+                    </div>
+                <div> <h1> &nbsp; Welcome ~</h1>
+                </div>
+            </div>
+            <br>
+            <br>
             <blockquote>
-                <p> A formatted document containing blank fields that users can fill in with data.
+                <p> A form is a formatted document containing blank fields that users can fill in with data.
                 </p>
                 <small> Wikipedia. <a href="https://en.wikipedia.org/wiki/Form_(document)"> Read More</a></small>
             </blockquote>
+
 
             <p>
                 Web-forms can resemble paper or database forms because web users fill out the forms using checkboxes,
                 radio buttons, or text fields. For example, forms can be used to enter shipping or credit card data to order a product,
                 or can be used to retrieve search results from a search engine.n. </p>
 
-            <h3>Why Form Maker?</h3>
-            <p>Form Maker is a complete online form builder solution that provides all you need to create a form and publish it online.
-                It is simple to use, flexible, reliable, secure, mobile friendly and so much more!
-            </p>
-            <br>
-            <p>
-                <b>Create your awesome form <a href="login.html">here </a> !</b>
-            </p>
+
+                    <div class="panel panel-default">
+                    <div class="panel-heading"> Why Form Maker? </div>
+                        <div class="panel-body">
+                                    Form Maker is a complete online form builder solution that provides all you need to create a form and publish it online.
+                                    Here's why Form Maker is awesome:
+                                    <br>
+                                    <ul>
+                                        <li> Simple to use </li>
+                                        <li> Flexible </li>
+                                        <li> Reliable </li>
+                                        <li> Secure </li>
+                                        <li> Quick </li>
+                                        <li> Mobile friendly </li>
+                                    </ul>
+                                    and so much more!
+                            <b>Start creating an awesome form <a href="login.html">here </a> !</b>
+                        </div>
+                    </div>
 
 
         </div>
@@ -90,5 +112,6 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
