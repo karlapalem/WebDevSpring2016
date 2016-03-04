@@ -25,7 +25,7 @@
         ];
 
         var api = {
-            findUsersByUsernameAndPassword: findUsersByUsernameAndPassword,
+            findUsersByCredentials: findUsersByCredentials,
             findAllUsers: findAllUsers,
             createUser: createUser,
             deleteUserById: deleteUserById,
@@ -33,7 +33,7 @@
         };
         return api;
 
-        function findUsersByUsernameAndPassword(username, password, callback) {
+        function findUsersByCredentials(username, password, callback) {
             var user = null;
             for (var i = 0; i < users.length; i++) {
                 if (users[i].username === username && users[i].password === password) {
