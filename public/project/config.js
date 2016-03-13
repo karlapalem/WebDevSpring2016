@@ -1,24 +1,17 @@
-/**
- * Created by poojitha on 3/4/16.
- */
+
 "use strict";
 
 (function () {
     angular
-        .module("FormBuilderApp", ["ngRoute"])
+        .module("ArtBridgeApp", ["ngRoute"])
         .config(function ($routeProvider) {
             $routeProvider
                 .when("/home", {
-                    templateUrl: "views/home/home.view.html",
-                    controller: "HomeController"
+                    templateUrl: "views/home/home.view.html"
                 })
                 .when("/browse", {
                     templateUrl: "views/browse/browse.view.html",
                     controller: "FormController"
-                })
-                .when("/fields", {
-                    templateUrl: "views/browse/fields.view.html",
-                    controller: "FieldsController"
                 })
                 .when("/register", {
                     templateUrl: "views/users/register.view.html",
@@ -36,6 +29,11 @@
                     templateUrl: "views/admin/admin.view.html",
                     controller: "AdminController"
                 })
+                .when("/mywork", {
+                    templateUrl: "views/users/mywork.view.html",
+                    controller: "MyWorkController"
+                })
+
                 .otherwise({
                     redirectTo: "/home"
                 });
