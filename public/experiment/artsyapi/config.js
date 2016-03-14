@@ -9,7 +9,7 @@
                 templateUrl: "home/home.view.html"
             })
             .when("/browse", {
-                templateUrl: "browse/browse.view.html",
+                templateUrl: "search/search.view.html",
                 controller: "SearchController"
             })
             .when("/browse/:title", {
