@@ -35,7 +35,7 @@
                 }
             };
 
-            UserService.findUsersByCredentials(username, password, callback);
+            UserService.findUsersByUsernameAndPassword(username, password, callback);
         }
     }
 })();

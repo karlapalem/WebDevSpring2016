@@ -14,15 +14,15 @@
                     controller: "FormController"
                 })
                 .when("/register", {
-                    templateUrl: "views/users/register.view.html",
+                    templateUrl: "views/register/register.view.html",
                     controller: "RegisterController"
                 })
                 .when("/login", {
-                    templateUrl: "views/users/login.view.html",
+                    templateUrl: "views/register/login.view.html",
                     controller: "LoginController"
                 })
                 .when("/profile", {
-                    templateUrl: "views/users/profile.view.html",
+                    templateUrl: "views/register/profile.view.html",
                     controller: "ProfileController"
                 })
                 .when("/admin", {
@@ -30,7 +30,7 @@
                     controller: "AdminController"
                 })
                 .when("/mywork", {
-                    templateUrl: "views/users/mywork.view.html",
+                    templateUrl: "views/register/mywork.view.html",
                     controller: "MyWorkController"
                 })
 

@@ -1,6 +1,3 @@
-/**
- * Created by poojitha on 3/4/16.
- */
 "use strict";
 
 (function () {
@@ -17,7 +14,7 @@
 
         var user = $rootScope.currentUser;
 
-        // Get the current user's browse for rendering.
+        // Get the current user's forms for rendering.
         getUserForms(user);
         function getUserForms(user) {
             var callback = function (userForms) {

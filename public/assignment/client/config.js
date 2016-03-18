@@ -1,6 +1,3 @@
-/**
- * Created by poojitha on 3/4/16.
- */
 "use strict";
 
 (function () {
@@ -9,32 +6,31 @@
         .config(function ($routeProvider) {
             $routeProvider
                 .when("/home", {
-                    templateUrl: "views/home/home.view.html",
-                    controller: "HomeController"
+                    templateUrl: "views/home/home.view.html"
                 })
-                .when("/browse", {
-                    templateUrl: "views/browse/browse.view.html",
+                .when("/forms", {
+                    templateUrl: "views/forms/forms.view.html",
                     controller: "FormController"
                 })
-                .when("/fields", {
-                    templateUrl: "views/browse/fields.view.html",
-                    controller: "FieldsController"
-                })
                 .when("/register", {
-                    templateUrl: "views/users/register.view.html",
+                    templateUrl: "views/register/register.view.html",
                     controller: "RegisterController"
                 })
                 .when("/login", {
-                    templateUrl: "views/users/login.view.html",
+                    templateUrl: "views/login/login.view.html",
                     controller: "LoginController"
                 })
                 .when("/profile", {
-                    templateUrl: "views/users/profile.view.html",
+                    templateUrl: "views/profile/profile.view.html",
                     controller: "ProfileController"
                 })
                 .when("/admin", {
                     templateUrl: "views/admin/admin.view.html",
                     controller: "AdminController"
+                })
+                .when("/forms/:formId/fields", {
+                    templateUrl: "views/forms/fields.view.html",
+                    controller: "FieldController"
                 })
                 .otherwise({
                     redirectTo: "/home"
