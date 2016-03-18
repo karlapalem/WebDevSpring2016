@@ -5,7 +5,7 @@ module.exports = function(app, formModel) {
 
     // Form Service Endpoints
 
-    /* Probably not required, depending on Piazza answer. Implement if needed.
+    /* Probably not required
      app.post("/api/assignment/field", createField);
      app.get("/api/assignment/field", findAllFields);
      app.get("/api/assignment/field/:fieldId", findFieldById);
