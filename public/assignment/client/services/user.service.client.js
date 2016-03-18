@@ -26,6 +26,29 @@
 
         var api = {
 
+            users: [
+                {
+                    "_id": 123, "firstName": "Alice", "lastName": "Wonderland",
+                    "username": "alice", "password": "alice", "roles": ["student"]
+                },
+                {
+                    "_id": 234, "firstName": "Bob", "lastName": "Hope",
+                    "username": "bob", "password": "bob", "roles": ["admin"]
+                },
+                {
+                    "_id": 345, "firstName": "Charlie", "lastName": "Brown",
+                    "username": "charlie", "password": "charlie", "roles": ["faculty"]
+                },
+                {
+                    "_id": 456, "firstName": "Dan", "lastName": "Craig",
+                    "username": "dan", "password": "dan", "roles": ["faculty", "admin"]
+                },
+                {
+                    "_id": 567, "firstName": "Edward", "lastName": "Norton",
+                    "username": "ed", "password": "ed", "roles": ["student"]
+                }
+            ],
+
             findUsersByCredentials: findUsersByCredentials,
             findAllUsers: findAllUsers,
             createUser: createUser,
@@ -36,9 +59,9 @@
 
         function findUsersByCredentials(username, password, callback) {
             var user = null;
-            for (var i = 0; i < users.length; i++) {
-                if (users[i].username === username && users[i].password === password) {
-                    user = users[i];
+            for (var i = 0; i < api.users.length; i++) {
+                if (api.users[i].username === username && api.users[i].password === password) {
+                    user = api.users[i];
                     break;
                 }
             }
@@ -46,30 +69,30 @@
         }
 
         function findAllUsers(callback) {
-            callback(users);
+            callback(api.users);
         }
 
         function createUser(user, callback) {
             user._id = (new Date).getTime();
-            users.push(user);
+            api.users.push(user);
             callback(user);
         }
 
         function deleteUserById(userId, callback) {
-            for (var i = 0; i < users.length; i++) {
-                if (users[i]._id === userId) {
-                    users.splice(i, 1);
+            for (var i = 0; i < api.users.length; i++) {
+                if (api.users[i]._id === userId) {
+                    api.users.splice(i, 1);
                     break;
                 }
             }
-            callback(users);
+            callback(api.users);
         }
 
         function updateUser(userId, user, callback) {
-            for (var i = 0; i < users.length; i++) {
-                if (users[i]._id === userId) {
-                    users[i] = user;
-                    callback(users[i]);
+            for (var i = 0; i < api.users.length; i++) {
+                if (api.users[i]._id === userId) {
+                    api.users[i] = user;
+                    callback(api.users[i]);
                     break;
                 }
             }
