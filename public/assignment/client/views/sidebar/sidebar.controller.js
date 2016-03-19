@@ -3,12 +3,19 @@
  */
 "use strict";
 
-(function () {
+(function() {
     angular
         .module("FormBuilderApp")
-        .controller("SidebarController", sidebarController);
+        .controller("SidebarController", SidebarController);
 
-    function sidebarController() {
-        // No event handlers currently required.
+    function SidebarController($rootScope, $location) {
+
+        var vm = this;
+
+        function init() {
+
+            vm.$location = $location;
+        }
+        init();
     }
 })();

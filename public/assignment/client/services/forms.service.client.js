@@ -1,65 +1,99 @@
-/**
- * Created by poojitha on 3/4/16.
- */
 "use strict";
 
 (function () {
     angular
         .module("FormBuilderApp")
-        .factory("FormService", formService);
+        .factory("FormService", FormService);
 
-    function formService() {
-
-        var forms = [];
-        forms = [
-            {"_id": "000", "title": "Contacts", "userId": 123},
-            {"_id": "010", "title": "ToDo", "userId": 123},
-            {"_id": "020", "title": "CDs", "userId": 234}
-        ];
+    function FormService($http, $q) {
 
         var api = {
             createFormForUser: createFormForUser,
+
             findAllFormsForUser: findAllFormsForUser,
+
             deleteFormById: deleteFormById,
-            updateFormById: updateFormById
+
+            updateFormById: updateFormById,
+
+            findFormById: findFormById
         };
         return api;
 
-        function createFormForUser(userId, form, callback) {
-            form._id = (new Date).getTime();
-            form.userId = userId;
-            forms.push(form);
-            callback(form);
+        function createFormForUser(userID, form) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/user/:userId/form";
+            url = url.replace(":userId", userID);
+
+            $http.post(url, form).success(function (response) {
+
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
         }
 
-        function findAllFormsForUser(userId, callback) {
-            var userForms = [];
-            for (var i = 0; i < forms.length; i++) {
-                if (forms[i].userId === userId) {
-                    userForms.push(forms[i]);
-                }
-            }
-            callback(userForms);
+        function findAllFormsForUser(userID) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/user/:userId/form";
+            url = url.replace(":userId", userID);
+
+            $http.get(url).success(function (response) {
+
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
         }
 
-        function deleteFormById(formId, callback) {
-            for (var i = 0; i < forms.length; i++) {
-                if (forms[i]._id === formId) {
-                    forms.splice(i, 1);
-                    break;
-                }
-            }
-            callback(forms);
+        function deleteFormById(formID) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/form/:formId";
+            url = url.replace(":formId", formID);
+
+            $http.delete(url).success(function(response) {
+
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+
         }
 
-        function updateFormById(formId, newForm, callback) {
-            for (var i = 0; i < forms.length; i++) {
-                if (forms[i]._id === formId) {
-                    forms[i] = newForm;
-                    callback(forms[i]);
-                    break;
-                }
-            }
+        function updateFormById(formID, newForm) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/form/:formId";
+            url = url.replace(":formId", formID);
+
+            $http.put(url, newForm).success(function(response) {
+
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+        }
+        function findFormById(formID) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/form/:formId";
+            url = url.replace(":formId", formID);
+
+            $http.get(url).success(function(response) {
+
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+
         }
     }
 })();

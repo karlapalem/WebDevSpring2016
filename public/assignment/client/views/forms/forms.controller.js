@@ -1,79 +1,88 @@
 "use strict";
 
-(function () {
+(function() {
     angular
         .module("FormBuilderApp")
-        .controller("FormController", formController);
+        .controller("FormsController", FormsController);
 
-    function formController($scope, $rootScope, FormService) {
+    function FormsController($rootScope, FormService, $location) {
 
-        $scope.addForm = addForm;
-        $scope.updateForm = updateForm;
-        $scope.deleteForm = deleteForm;
-        $scope.selectForm = selectForm;
+        var vm = this;
 
-        var user = $rootScope.currentUser;
+        function init() {
 
-        // Get the current user's forms for rendering.
-        getUserForms(user);
-        function getUserForms(user) {
-            var callback = function (userForms) {
-                $scope.userForms = userForms;
-            };
+            FormService.findAllFormsForUser($rootScope.currentUser._id).then(function(response) {
 
-            FormService.findAllFormsForUser(user._id, callback);
+                vm.forms = response;
+
+                vm.$location = $location;
+
+            });
+        }
+        init();
+
+        var toBeUpdatedIndex = -1;
+
+        //Event handler declarations
+        vm.addForm = addForm;
+        vm.updateForm = updateForm;
+        vm.deleteForm = deleteForm;
+        vm.selectForm = selectForm;
+
+        //Event handler implementations
+        function addForm(form) {
+
+            FormService.createFormForUser($rootScope.currentUser._id, form).then(function(response) {
+
+                vm.forms = response;
+
+            });
+            vm.form = {};
         }
 
-        function addForm(formTitle) {
-            var newForm = {title: formTitle};
+        function updateForm(form) {
 
-            // Callback updates the form list after new form is added.
-            var callback = function (form) {
-                FormService.findAllFormsForUser(
-                    user._id,
-                    function (userForms) {
-                        $scope.userForms = userForms;
-                    });
-            };
+            FormService.updateFormById(form._id, form)
+                .then(function (response) {
 
-            FormService.createFormForUser(user._id, newForm, callback);
+                    if (response === "OK") {
+
+                        return FormService.findFormById(form._id);
+                    }
+                })
+                .then(function(updatedForm) {
+
+                    vm.forms[toBeUpdatedIndex] = updatedForm;
+                });
+
+            vm.form={};
         }
 
-        function updateForm(formTitle) {
-            var newForm = {
-                _id: $scope.selectedForm._id,
-                title: formTitle,
-                userId: $scope.selectedForm.userId};
+        function deleteForm($index) {
 
-            // Callback updates the form list after new form is updated.
-            var callback = function (form) {
-                FormService.findAllFormsForUser(
-                    user._id,
-                    function (userForms) {
-                        $scope.userForms = userForms;
-                    });
-            };
-            FormService.updateFormById(newForm._id, newForm, callback);
+            var formID = vm.forms[$index]._id;
+
+            FormService.deleteFormById(formID).then(function(response) {
+
+                if(response === "OK") {
+                    init();
+                }
+            });
         }
 
-        function deleteForm(index) {
+        function selectForm($index) {
 
-            // Callback updates the form list after new form is deleted.
-            var callback = function (form) {
-                FormService.findAllFormsForUser(
-                    user._id,
-                    function (userForms) {
-                        $scope.userForms = userForms;
-                    });
+            vm.form={};
+
+            var selectedForm = vm.forms[$index];
+
+            vm.form = {
+                _id: selectedForm._id,
+                title: selectedForm.title,
+                userId: selectedForm.userId
             };
 
-            FormService.deleteFormById($scope.userForms[index]._id, callback);
-        }
-
-        function selectForm(index) {
-            $scope.selectedForm = $scope.userForms[index];
-            // formTitle sets the displayed name in the input box of the view.
-            $scope.formTitle = $scope.selectedForm.title;
+            toBeUpdatedIndex = $index;
         }
     }
 })();

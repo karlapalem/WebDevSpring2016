@@ -1,101 +1,136 @@
-/**
- * Created by poojitha on 3/4/16.
- */
 "use strict";
 
 (function () {
     angular
         .module("FormBuilderApp")
-        .factory("UserService", userService);
+        .factory("UserService", UserService);
 
-    function userService() {
+    function UserService($http, $q, $rootScope) {
 
-        /*        var users = [];
-         users = [
-         {"_id":123, "firstName":"Alice", "lastName":"Wonderland",
-         "username":"alice", "password":"alice", "roles": ["student"]},
-         {"_id":234, "firstName":"Bob", "lastName":"Hope",
-         "username":"bob", "password":"bob", "roles": ["admin"]},
-         {"_id":345, "firstName":"Charlie", "lastName":"Brown",
-         "username":"charlie","password":"charlie", "roles": ["faculty"]},
-         {"_id":456, "firstName":"Dan", "lastName":"Craig",
-         "username":"dan", "password":"dan", "roles": ["faculty", "admin"]},
-         {"_id":567, "firstName":"Edward", "lastName":"Norton",
-         "username":"ed", "password":"ed", "roles": ["student"]}
-         ];*/
-
-        var api = {
-
-            users: [
-                {
-                    "_id": 123, "firstName": "Alice", "lastName": "Wonderland",
-                    "username": "alice", "password": "alice", "roles": ["student"]
-                },
-                {
-                    "_id": 234, "firstName": "Bob", "lastName": "Hope",
-                    "username": "bob", "password": "bob", "roles": ["admin"]
-                },
-                {
-                    "_id": 345, "firstName": "Charlie", "lastName": "Brown",
-                    "username": "charlie", "password": "charlie", "roles": ["faculty"]
-                },
-                {
-                    "_id": 456, "firstName": "Dan", "lastName": "Craig",
-                    "username": "dan", "password": "dan", "roles": ["faculty", "admin"]
-                },
-                {
-                    "_id": 567, "firstName": "Edward", "lastName": "Norton",
-                    "username": "ed", "password": "ed", "roles": ["student"]
-                }
-            ],
-
-            findUsersByCredentials: findUsersByCredentials,
+        var service = {
+            findUserByCredentials: findUserByCredentials,
+            findUserByUsername: findUserByUsername,
             findAllUsers: findAllUsers,
             createUser: createUser,
             deleteUserById: deleteUserById,
-            updateUser: updateUser
+            updateUser: updateUser,
+            findUserById: findUserById,
+            getCurrentUser: getCurrentUser,
+            setCurrentUser: setCurrentUser,
+            logout: logout
         };
-        return api;
+        return service;
 
-        function findUsersByCredentials(username, password, callback) {
-            var user = null;
-            for (var i = 0; i < api.users.length; i++) {
-                if (api.users[i].username === username && api.users[i].password === password) {
-                    user = api.users[i];
-                    break;
-                }
-            }
-            callback(user);
+        function findUserByCredentials(username, password) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/user?username=:username&password=:password";
+            url = url.replace(":username", username);
+            url = url.replace(":password", password);
+
+            $http.get(url).success (function (response) {
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+        }
+
+        function findUserByUsername(username) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/user?username=:username";
+            url = url.replace(":username", username);
+
+            $http.get(url).success (function (response) {
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
         }
 
         function findAllUsers(callback) {
-            callback(api.users);
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/user";
+
+            $http.get(url).success (function (response) {
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
         }
 
-        function createUser(user, callback) {
-            user._id = (new Date).getTime();
-            api.users.push(user);
-            callback(user);
+        function createUser(user) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/user";
+
+            $http.post(url, user).success (function (response) {
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
         }
 
-        function deleteUserById(userId, callback) {
-            for (var i = 0; i < api.users.length; i++) {
-                if (api.users[i]._id === userId) {
-                    api.users.splice(i, 1);
-                    break;
-                }
-            }
-            callback(api.users);
+        function deleteUserById(userID) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/user/:id";
+            url = url.replace(":id", userID);
+
+            $http.delete(url).success (function (response) {
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
         }
 
-        function updateUser(userId, user, callback) {
-            for (var i = 0; i < api.users.length; i++) {
-                if (api.users[i]._id === userId) {
-                    api.users[i] = user;
-                    callback(api.users[i]);
-                    break;
-                }
-            }
+        function updateUser(userID, user) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/user/:id";
+            url = url.replace(":id", userID);
+
+            $http.put(url, user).success (function (response) {
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+        }
+
+        function findUserById(userID) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/user/:id";
+            url = url.replace(":id", userID);
+
+            $http.get(url).success (function (response) {
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+        }
+
+        function getCurrentUser() {
+
+            return $http.get("/api/assignment/user/loggedin");
+        }
+
+        function setCurrentUser(user) {
+
+            $rootScope.currentUser = user;
+        }
+
+        function logout() {
+
+            return $http.post("/api/assignment/user/logout")
         }
     }
 })();

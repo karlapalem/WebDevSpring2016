@@ -1,15 +1,12 @@
+module.exports = function(app, uuid) {
 
-module.exports = function (app) {
+    var userModel = require("./models/user.model.js")();
 
-    var userModel = require("./models/user.model.js")(app);
-    var formModel = require("./models/form.model.js")(app);
+    var formModel = require("./models/form.model.js")();
 
-    var userService = require("./services/user.service.server.js");
-    var formService = require("./services/form.service.server.js");
-    var fieldService = require("./services/field.service.server.js");
+    var userService = require("./services/user.service.server.js")(app, userModel, uuid);
 
-    // Pass models to services
-    userService(app, userModel);
-    formService(app, formModel);
-    fieldService(app, formModel);
+    var formService = require("./services/form.service.server.js")(app, formModel, uuid);
+
+    var fieldService = require("./services/field.service.server.js")(app, formModel, uuid);
 };

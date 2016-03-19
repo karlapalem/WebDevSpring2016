@@ -2,14 +2,18 @@
  * Created by poojitha on 3/4/16.
  */
 
-(function () {
+"use strict";
+
+(function() {
     angular
         .module("FormBuilderApp")
-        .controller("AdminController",AdminController);
+        .controller("AdminController", AdminController);
 
-    function AdminController($location,$scope){
+    function AdminController($rootScope) {
+        var vm = this;
 
-        $scope.$location=$location;
+        (function init() {
 
+        })();
     }
-}) ();
+})();

@@ -1,74 +1,76 @@
+"use strict"
 
-//var uuid = require('node-uuid');
+module.exports = function (app, formModel, uuid) {
 
-module.exports = function(app, formModel) {
+    //creates a new field whose properties are the same as the field object embedded in the request's body and
+    // the field belongs to a form whose id is equal to the formId path parameter.
+    // The field object's id is initially null since it is a new record.
+    // The id of the new form field should be set dynamically using Node.js guid or node-uuid libraries.
+    // These will eventually be set by the database when they are inserted into a collection
+    app.post("/api/assignment/form/:formId/field", createFormField);
 
-    // Form Service Endpoints
+    //returns an array of fields belonging to a form object whose id is equal to the formId path parameter
+    app.get("/api/assignment/form/:formId/field", findAllFieldsForForm);
 
-    /* Probably not required
-     app.post("/api/assignment/field", createField);
-     app.get("/api/assignment/field", findAllFields);
-     app.get("/api/assignment/field/:fieldId", findFieldById);
-     app.put("/api/assignment/field/:fieldId", updateFieldById);
-     app.delete("/api/assignment/field/:fieldId", deleteFieldById);
-     */
+    //returns a field object whose id is equal to the fieldId path parameter
+    //and belonging to a form object whose id is equal to the formId path parameter
+    app.get("/api/assignment/form/:formId/field/:fieldId", findFieldByFieldIdAndFormId);
 
-    app.post("/api/assignment/form/:formId/field", addFormField);
-    app.get("/api/assignment/form/:formId/field", findAllFormFields);
-    app.get("/api/assignment/form/:formId/field/:fieldId", findFormFieldById);
-    app.put("/api/assignment/form/:formId/field/:fieldId", updateFormFieldById);
-    app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFormFieldById);
+    //updates a field object whose id is equal to the fieldId path parameter and
+    // belonging to a form object whose id is equal to the formId path parameter
+    // so that its properties are the same as the property values of the field object embedded in the request's body
+    app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldByFieldIdAndFormId);
 
-    function addFormField(req, res) {
-        var formId = req.params.formId;
-        var fieldObj = req.body;
+    //removes a field object whose id is equal to the fieldId path parameter and
+    // belonging to a form object whose id is equal to the formId path parameter
+    app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldByFieldIdAndFormId);
 
-        // Create random ID
-        fieldObj._id = uuid.v1();
+    function createFormField (req, res) {
 
-        formModel
-            .addFormField(formId, fieldObj)
-            .then(function (fields) {
-                res.json(fields);
-            });
+        var field = req.body;
+        var formId = parseInt(req.params.formId);
+
+        field._id = parseInt(uuid.v4(), 16);
+
+        formModel.createFieldForForm(formId, field);
+
+        res.json(formModel.findAllFieldsForForm(formId));
     }
 
-    function findAllFormFields(req, res) {
-        var formId = req.params.formId;
-        formModel
-            .findAllFormFields(formId)
-            .then(function (formFields) {
-                res.json(formFields);
-            });
+    function findAllFieldsForForm(req, res) {
+
+        var formId = parseInt(req.params.formId );
+
+        res.json(formModel.findAllFieldsForForm(formId));
     }
 
-    function findFormFieldById(req, res) {
-        var formId = req.params.formId;
-        var fieldId = req.params.fieldId;
-        formModel
-            .findFormFieldById(formId, fieldId)
-            .then(function (field) {
-                res.json(field);
-            });
+    function findFieldByFieldIdAndFormId(req, res) {
+
+        var formId = parseInt(req.params.formId);
+        var fieldId = parseInt(req.params.fieldId);
+
+        res.json(formModel.findFieldByFieldIdAndFormId(formId, fieldId));
     }
 
-    function updateFormFieldById(req, res) {
-        var formId = req.params.formId;
-        var fieldId = req.params.fieldId;
-        formModel
-            .updateFormById(formId, fieldId)
-            .then(function (forms) {
-                res.json(forms);
-            });
+    function updateFieldByFieldIdAndFormId (req, res) {
+
+        var formId = parseInt(req.params.formId);
+        var fieldId = parseInt(req.params.fieldId);
+        var field = req.body;
+
+        formModel.updateFieldByFieldIdAndFormId(formId, fieldId, field);
+
+        res.send(200);
     }
 
-    function deleteFormFieldById(req, res) {
-        var formId = req.params.formId;
-        var fieldId = req.params.fieldId;
-        formModel
-            .deleteFormById(formId, fieldId)
-            .then(function (fields) {
-                res.json(fields);
-            });
+    function deleteFieldByFieldIdAndFormId (req, res) {
+
+        var formId = parseInt(req.params.formId);
+        var fieldId = parseInt(req.params.fieldId);
+
+        formModel.deleteFieldByFieldIdAndFormId(formId, fieldId);
+
+        res.send(200);
     }
+
 };

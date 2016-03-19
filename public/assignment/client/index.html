@@ -15,21 +15,29 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 
     <!-- CDNs -->
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
 
     <!-- Angular App and Routing -->
+    <script src="directives/fieldSortable.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap-tpls.min.js"></script>
+
     <script src="app.js"></script>
     <script src="config.js"></script>
 
     <!-- Controllers -->
     <script src="views/main/main.controller.js"></script>
+    <script src="views/admin/admin.controller.js"></script>
     <script src="views/header/header.controller.js"></script>
     <script src="views/sidebar/sidebar.controller.js"></script>
+    <script src="views/home/home.controller.js"></script>
     <script src="views/register/register.controller.js"></script>
     <script src="views/profile/profile.controller.js"></script>
     <script src="views/login/login.controller.js"></script>
@@ -43,7 +51,7 @@
 
 </head>
 
-<body ng-controller="MainController">
+<body ng-controller="MainController as model">
 
 <div ng-include src= "'views/header/header.view.html'"></div>
 

@@ -1,32 +1,48 @@
-/**
- * Created by poojitha on 3/4/16.
- */
 "use strict";
 
-(function () {
+(function() {
     angular
         .module("FormBuilderApp")
-        .controller("ProfileController", profileController);
+        .controller("ProfileController", ProfileController);
 
-    function profileController($scope, $rootScope, $location, UserService) {
+    function ProfileController($rootScope, UserService, $location) {
 
-        $scope.update = update;
-        $scope.closeButtonAlert = closeButtonAlert;
+        var vm = this;
+
+        function init() {
+
+            vm.user= {};
+
+            vm.user.username = $rootScope.currentUser.username;
+            vm.user.password = $rootScope.currentUser.password;
+            vm.user.email = $rootScope.currentUser.email;
+            vm.user.firstName = $rootScope.currentUser.firstName;
+            vm.user.lastName = $rootScope.currentUser.lastName;
+
+        }
+        init();
+
+        vm.update = update;
 
         function update(user) {
 
-            // Confirmation message triggers ng-show visibility in the view.
-            var callback = function (aUser) {
-                $scope.message = "Profile updated successfully. (Click to close.)";
-                $rootScope.currentUser = aUser;
-                $location.url("/profile");
-            };
-
-            UserService.updateUser(user._id, user, callback);
+            UserService.updateUser($rootScope.currentUser._id, user).then(updateProfilePage);
         }
 
-        function closeButtonAlert() {
-            $scope.message = null;
+        function updateProfilePage(response) {
+
+            if (response === "OK") {
+
+                UserService.findUserById($rootScope.currentUser._id).then (function (updatedUser) {
+
+                    vm.user.username = updatedUser.username;
+                    vm.user.firstName = updatedUser.firstName;
+                    vm.user.lastName = updatedUser.lastName;
+                    vm.user.email = updatedUser.email;
+
+                    UserService.setCurrentUser(updatedUser);
+                });
+            }
         }
     }
 })();

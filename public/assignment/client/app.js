@@ -3,6 +3,6 @@
  */
 "use strict";
 
-(function () {
-    angular.module("FormBuilderApp", ["ngRoute"]);
+(function() {
+    angular.module("FormBuilderApp", ["ngRoute", "fieldSortable", "ui.bootstrap"]);
 })();

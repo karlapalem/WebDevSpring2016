@@ -1,15 +1,25 @@
-/**
- * Created by poojitha on 3/4/16.
- */
 "use strict";
 
-(function () {
+(function() {
     angular
         .module("FormBuilderApp")
-        .controller("MainController", mainController);
+        .controller("MainController", MainController);
 
-    function mainController($scope, $location) {
+    function MainController($location, UserService) {
 
-        $scope.$location = $location;
+        var vm = this;
+
+        function init() {
+
+            UserService.getCurrentUser().then(function (response) {
+
+                if(response.data) {
+
+                    UserService.setCurrentUser(response.data);
+
+                }
+            });
+        }
+        init();
     }
 })();

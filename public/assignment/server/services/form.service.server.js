@@ -1,82 +1,74 @@
+"use strict"
 
-//var uuid = require('node-uuid');
+module.exports = function(app, formModel, uuid) {
 
-module.exports = function(app, formModel) {
+    //creates a new form whose properties are the same as the form object embedded in the HTTP request's body and
+    //the form belongs to a user whose id is equal to the userId path parameter.
+    //The form object's id is initially null since it is a new record.
+    // The id of the new form should be set dynamically using Node.js guid or node-uuid libraries.
+    // These will eventually be set by the database when they are inserted into a collection
+    app.post("/api/assignment/user/:userId/form", createForm);
 
-    // Form Service Endpoints
-    app.post("/api/assignment/form", createForm);                       // May delete depending on Piazza answer.
-    app.post("/api/assignment/user/:userId/form", createFormByUserId);
-    app.get("/api/assignment/form", findAllForms);                      // May delete depending on Piazza answer.
-    app.get("/api/assignment/user/:userId/form", findFormsByUserId);
+    //returns an array of forms belonging to a user whose id is equal to the userId path parameter
+    app.get("/api/assignment/user/:userId/form", findAllformsForUser);
+
+    //returns a form object whose id is equal to the formId path parameter
     app.get("/api/assignment/form/:formId", findFormById);
+
+    //updates a form object whose id is equal to the formId path parameter so that its properties are the same as
+    //the property values of the form object embedded in the request's body
     app.put("/api/assignment/form/:formId", updateFormById);
+
+    //removes a form object whose id is equal to the formId path parameter
     app.delete("/api/assignment/form/:formId", deleteFormById);
 
-    function createForm(req, res) {
-        var formObj = req.body;
-        formModel
-            .createForm(formObj)
-            .then(function (forms) {
-                res.json(forms);
-            });
+    function createForm (req, res) {
+
+        var form = req.body;
+        var userId = parseInt(req.params.userId);
+
+        form.userId = userId;
+        form._id = parseInt(uuid.v4(), 16);
+
+        formModel.createForm(form);
+        res.json(formModel.findAllFormsByUserId(userId));
     }
 
-    function createFormByUserId(req, res) {
-        var userId = req.params.userId;
-        var formObj = req.body;
-        formObj.userId = userId;
+    function findAllformsForUser(req, res) {
 
-        // Create random ID
-        formObj._id = uuid.v1();
+        var userId = parseInt(req.params.userId);
 
-        formModel
-            .createUser(formObj)
-            .then(function (forms) {
-                res.json(forms);
-            });
+        res.json(formModel.findAllFormsByUserId(userId));
     }
 
     function findAllForms(req, res) {
-        formModel
-            .findAllForms()
-            .then(function (forms) {
-                res.json(forms);
-            });
-    }
 
-    function findFormsByUserId(req, res) {
-        var userId = req.params.userId;
-        formModel
-            .findFormsByUserId(userId)
-            .then(function (userForms) {
-                res.json(userForms);
-            });
+        res.json(formModel.findAllForms());
     }
 
     function findFormById(req, res) {
-        var formId = req.params.formId;
-        formModel
-            .findFormById(formId)
-            .then(function (form) {
-                res.json(form);
-            });
+
+        var formId = parseInt(req.params.formId);
+
+        res.json(formModel.findFormById(formId));
     }
 
     function updateFormById(req, res) {
-        var formId = req.params.formId;
-        formModel
-            .updateFormById(formId)
-            .then(function (forms) {
-                res.json(forms);
-            });
+
+        var formId = parseInt(req.params.formId);
+        var form = req.body;
+
+        formModel.updateFormById(formId, form);
+
+        res.send(200);
     }
 
     function deleteFormById(req, res) {
-        var formId = req.params.formId;
-        formModel
-            .deleteFormById(formId)
-            .then(function (forms) {
-                res.json(forms);
-            });
+
+        var formId = parseInt(req.params.formId);
+
+        formModel.deleteFormById(formId);
+
+        res.send(200);
     }
 };

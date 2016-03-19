@@ -3,18 +3,30 @@
  */
 "use strict";
 
-(function () {
+(function() {
     angular
         .module("FormBuilderApp")
-        .controller("HeaderController", headerController);
+        .controller("HeaderController", HeaderController);
 
-    function headerController($scope, $location, $rootScope) {
+    function HeaderController(UserService, $location) {
 
-        $scope.logout = logout;
+        var vm = this;
+
+        function init() {
+
+            vm.$location = $location;
+        }
+        init();
+
+        vm.logout = logout;
 
         function logout() {
-            $rootScope.currentUser = null;
-            $location.url("/home");
+
+            UserService.logout().then(function(response) {
+
+                UserService.setCurrentUser(null);
+                $location.url("/home");
+            });
         }
     }
 })();

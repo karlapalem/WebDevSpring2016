@@ -1,31 +1,26 @@
-/**
- * Created by poojitha on 3/4/16.
- */
-"use strict";
 
-(function () {
+(function() {
     angular
         .module("FormBuilderApp")
-        .controller("RegisterController", registerController);
+        .controller("RegisterController", RegisterController);
 
-    function registerController($scope, $rootScope, $location, UserService) {
+    function RegisterController(UserService, $rootScope, $location) {
 
-        $scope.register = register;
+        var vm = this;
 
-        function register(username, password, password2, email) {
+        vm.register = register;
 
-            var callback = function (aUser) {
-                $rootScope.currentUser = aUser;
-                $location.url("/profile");
-            };
+        function register(user) {
 
-            // Check for password consistency before creating user.
-            if (password === password2) {
-                var user = {"username": username, "password": password, "email": email};
-                UserService.createUser(user, callback);
-            } else {
-                alert("Password and password verification do not match. Please re-enter details.");
-            }
+            UserService.createUser(user).then(function(users) {
+
+                UserService.findUserByUsername(user.username).then(function (newUser) {
+
+                    UserService.setCurrentUser(newUser);
+
+                    $location.url("/profile");
+                });
+            });
         }
     }
 })();

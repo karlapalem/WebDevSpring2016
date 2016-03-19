@@ -1,14 +1,18 @@
 {
-  "name": "webdev_project",
+  "name": "WebDevelopment",
   "version": "1.0.0",
-  "description": "OpenShift Sample Application",
+  "description": "Web Development CS5610",
   "keywords": [
     "OpenShift",
     "Node.js",
     "application",
     "openshift"
   ],
-  "author": "OpenShift <ramr@example.org> (http://www.openshift.com/)",
+  "author": {
+    "name": "Sudeep",
+    "email": "kulkarni.su@husky.neu.edu",
+    "url": "http://www.openshift.com/"
+  },
   "homepage": "http://www.openshift.com/",
   "repository": {
     "type": "git",
@@ -20,20 +24,16 @@
   },
   "dependencies": {
     "body-parser": "^1.15.0",
-    "express": "~3.4.4",
-    "http": "^0.0.0",
+    "cookie-parser": "^1.4.1",
+    "express": "^3.4.8",
+    "express-session": "^1.13.0",
+    "mongoose": "^4.4.7",
     "multer": "^1.1.0",
-    "node-uuid": "^1.4.7"
+    "node-uuid": "^1.4.7",
+    "q": "^1.4.1"
   },
   "devDependencies": {},
   "bundleDependencies": [],
   "private": true,
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "bugs": {
-    "url": "https://github.com/openshift/origin-server/issues"
-  },
-  "license": "ISC"
+  "main": "server.js"
 }

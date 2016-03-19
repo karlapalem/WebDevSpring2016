@@ -1,41 +1,29 @@
-/**
- * Created by poojitha on 3/4/16.
- */
 "use strict";
 
-(function () {
+(function() {
     angular
         .module("FormBuilderApp")
-        .controller("LoginController", loginController);
+        .controller("LoginController", LoginController);
 
-    function loginController($scope, $rootScope, $location, UserService) {
+    function LoginController(UserService, $location) {
 
-        $scope.login = login;
+        var vm = this;
 
-        function login(username, password) {
+        vm.login = login;
 
-            // Login verification occurs before setting the current user.
-            var callback = function (aUser) {
-                if (aUser === null) {
-                    alert("The username or password entered is not recognized.");
-                } else {
-                    // TODO: The commented line can replace the subsequent line once the database is used.
-                    // This temporarily prevents an issue where the user profile can be updated
-                    // without clicking the update button.
-                    //$rootScope.currentUser = aUser;
-                    $rootScope.currentUser = {
-                        "_id": aUser._id,
-                        "firstName": aUser.firstName,
-                        "lastName": aUser.lastName,
-                        "username": aUser.username,
-                        "password": aUser.password,
-                        "email": aUser.email,
-                        "roles": aUser.roles};
-                    $location.url("/profile");
-                }
-            };
+        function login(user) {
 
-            UserService.findUsersByCredentials(username, password, callback);
+            UserService.findUserByCredentials(user.username, user.password).then(isUserPresent);
+        }
+
+        function isUserPresent(response) {
+
+            if(response) {
+
+                UserService.setCurrentUser(response);
+
+                $location.url("/profile");
+            }
         }
     }
 })();
