@@ -18,11 +18,11 @@
                     controller: "RegisterController"
                 })
                 .when("/login", {
-                    templateUrl: "views/register/login.view.html",
+                    templateUrl: "views/users/login.view.html",
                     controller: "LoginController"
                 })
                 .when("/profile", {
-                    templateUrl: "views/register/profile.view.html",
+                    templateUrl: "views/users/profile.view.html",
                     controller: "ProfileController"
                 })
                 .when("/admin", {
@@ -30,7 +30,7 @@
                     controller: "AdminController"
                 })
                 .when("/mywork", {
-                    templateUrl: "views/register/mywork.view.html",
+                    templateUrl: "views/users/mywork.view.html",
                     controller: "MyWorkController"
                 })
 
