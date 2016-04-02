@@ -9,7 +9,7 @@ var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
 var mongoose      = require('mongoose');
 
-var connectionString = 'mongodb://127.0.0.1:27017/form_app';
+var connectionString = 'mongodb://127.0.0.1:27017/webdev2016';
 
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 
