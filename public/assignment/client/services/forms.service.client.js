@@ -40,6 +40,7 @@
             var deferred = $q.defer();
 
             var url = "/api/assignment/user/:userId/form";
+
             url = url.replace(":userId", userID);
 
             $http.get(url).success(function (response) {

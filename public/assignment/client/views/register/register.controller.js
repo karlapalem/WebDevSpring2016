@@ -1,4 +1,3 @@
-
 (function() {
     angular
         .module("FormBuilderApp")
@@ -11,6 +10,8 @@
         vm.register = register;
 
         function register(user) {
+
+            user.emails = user.emails.trim().split(",");
 
             UserService.createUser(user).then(function(users) {
 

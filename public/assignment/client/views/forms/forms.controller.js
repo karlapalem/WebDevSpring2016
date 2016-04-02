@@ -11,13 +11,17 @@
 
         function init() {
 
-            FormService.findAllFormsForUser($rootScope.currentUser._id).then(function(response) {
+            FormService.findAllFormsForUser($rootScope.currentUser._id)
 
-                vm.forms = response;
+                .then(
 
-                vm.$location = $location;
+                    function(response) {
 
-            });
+                        vm.forms = response;
+
+                        vm.$location = $location;
+                    }
+                );
         }
         init();
 
@@ -32,24 +36,39 @@
         //Event handler implementations
         function addForm(form) {
 
-            FormService.createFormForUser($rootScope.currentUser._id, form).then(function(response) {
+            FormService.createFormForUser($rootScope.currentUser._id, form)
 
-                vm.forms = response;
+                .then(
 
-            });
+                    function(response) {
+
+                        return FormService.findAllFormsForUser($rootScope.currentUser._id);
+
+                    })
+                .then(
+
+                    function (response) {
+
+                        vm.forms = response;
+
+                    }
+                );
+
             vm.form = {};
         }
 
         function updateForm(form) {
 
             FormService.updateFormById(form._id, form)
+
                 .then(function (response) {
 
-                    if (response === "OK") {
+                    if (response === "Updated") {
 
                         return FormService.findFormById(form._id);
                     }
                 })
+
                 .then(function(updatedForm) {
 
                     vm.forms[toBeUpdatedIndex] = updatedForm;
@@ -64,7 +83,8 @@
 
             FormService.deleteFormById(formID).then(function(response) {
 
-                if(response === "OK") {
+                if(response === "Deleted") {
+
                     init();
                 }
             });
@@ -77,8 +97,11 @@
             var selectedForm = vm.forms[$index];
 
             vm.form = {
+
                 _id: selectedForm._id,
+
                 title: selectedForm.title,
+
                 userId: selectedForm.userId
             };
 

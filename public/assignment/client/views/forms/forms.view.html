@@ -1,64 +1,65 @@
-<h1 class="page-header">Forms</h1>
 
-<div class="container">
+    <h1 class="page-header">Forms</h1>
 
-    <div class="row" id="forms-container">
+    <div class="container">
 
-        <ul class="nav nav-pills" id="my-nav">
+        <div class="row" id="forms-container">
 
-            <li ng-class="{'active': model.$location.url() == '/forms'}" role="presentation">
-                <a href="#/forms">Forms</a>
-            </li>
+            <ul class="nav nav-pills" id="my-nav">
 
-        </ul>
+                <li ng-class="{'active': model.$location.url() == '/forms'}" role="presentation">
+                    <a href="#/forms">Forms</a>
+                </li>
 
-        <div class="table-responsive" id="forms-n-fields-tbl">
+            </ul>
 
-            <table class="table table-bordered table-hover thick-top-border">
+            <div class="table-responsive" id="forms-n-fields-tbl">
 
-                <thead class="thead-inverse">
-                <tr>
-                    <th>
-                        <span class="glyphicon glyphicon-triangle-bottom hover"></span>
-                        Form Name
-                    </th>
-                    <th>
-                        <span class="glyphicon glyphicon-triangle-bottom hover"></span>
-                        Action
-                    </th>
-                </tr>
-                </thead>
+                <table class="table table-bordered table-hover thick-top-border">
 
-                <tbody>
-                <tr>
-                    <td class="col-md-10">
-                        <input type="text" placeholder="Name" class="form-control" ng-model="model.form.title">
-                    </td>
-                    <td class="col-md-2 right-align-cell">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>
+                            <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                            Form Name
+                        </th>
+                        <th>
+                            <span class="glyphicon glyphicon-triangle-bottom hover"></span>
+                            Action
+                        </th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td class="col-md-10">
+                            <input type="text" placeholder="Name" class="form-control" ng-model="model.form.title">
+                        </td>
+                        <td class="col-md-2 right-align-cell">
                             <span class="glyphicon glyphicon-plus glyphicon-big hover"
                                   ng-click="model.addForm(model.form)"></span>
-                        <span>&nbsp;&nbsp;</span>
-                        <span class="glyphicon glyphicon-ok glyphicon-big hover" ng-click="model.updateForm(model.form)"></span>
-                    </td>
-                </tr>
-                <tr ng-repeat="form in model.forms">
-                    <td>
+                            <span>&nbsp;&nbsp;</span>
+                            <span class="glyphicon glyphicon-ok glyphicon-big hover" ng-click="model.updateForm(model.form)"></span>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="form in model.forms">
+                        <td>
 
-                        <a href="#/form/{{form._id}}/fields">{{form.title}}</a>
+                            <a href="#/form/{{form._id}}/fields">{{form.title}}</a>
 
-                    </td>
-                    <td class="right-align-cell">
-                        <span class="glyphicon glyphicon-remove glyphicon-big hover" ng-click="model.deleteForm($index)"></span>
-                        <span>&nbsp;&nbsp;</span>
-                        <span class="glyphicon glyphicon-pencil glyphicon-big hover" ng-click="model.selectForm($index)"></span>
-                    </td>
-                </tr>
-                </tbody>
+                        </td>
+                        <td class="right-align-cell">
+                            <span class="glyphicon glyphicon-remove glyphicon-big hover" ng-click="model.deleteForm($index)"></span>
+                            <span>&nbsp;&nbsp;</span>
+                            <span class="glyphicon glyphicon-pencil glyphicon-big hover" ng-click="model.selectForm($index)"></span>
+                        </td>
+                    </tr>
+                    </tbody>
 
-            </table>
+                </table>
+
+            </div>
 
         </div>
 
     </div>
-
-</div>

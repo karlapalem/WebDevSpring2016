@@ -8,7 +8,7 @@
         .module("FormBuilderApp")
         .controller("SidebarController", SidebarController);
 
-    function SidebarController($rootScope, $location) {
+    function SidebarController(UserService, $location) {
 
         var vm = this;
 
