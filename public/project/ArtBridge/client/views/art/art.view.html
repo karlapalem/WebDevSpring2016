@@ -1,6 +1,25 @@
-<div class="tab-content">
+<div class="jumbotron">
+  <h1>ArtBridge</h1>
+  <p>Connecting artists around the world! Register now to buy art or to sell your art</p>
+  <p class="pull-right" ng-show="!user">
+    <button ng-click="login()" class="btn btn-info btn-lg">Login</button>
+    <button ng-click="signUp()" class="btn btn-info btn-lg">Register</button></p>
+  &nbsp;
+</div>
+
+
+<div class="container-fluid">
+  <!-- Middle and Right Header -->
+  <div ng-include="'views/header/header.view.html'"></div> <!-- <Header navigation> -->
+  <div class="container">
+    <!-- Art Content -->
+    <div class="article clearfix">
+
+<div class="tab-content" ng-controller="HeaderController">
   <div class="search-container clearfix">
-    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+    <h3>Latest artworks from all artists</h3>
+    <hr>
+    <div class="">
 
       <div ng-if="art.userId != model.user._id" ng-repeat="art in model.artItems" class="art-item col-lg-4 col-md-6 col-sm-6 col-xs-12">
 
@@ -23,4 +42,6 @@
     </div>
   </div>
 </div>
-
+</div>
+  </div>
+  </div>

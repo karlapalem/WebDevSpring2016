@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="ArtApp">
+<html lang="en" ng-app="ArtApp" ng-controller="HeaderController">
   <head>
     <title>ArtBridge</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,16 +80,8 @@
 
   </head>
 
-  <body>   
-    <div class="container-fluid">
-      <!-- Middle and Right Header -->
-      <div ng-include="'views/header/header.view.html'"></div> <!-- <Header navigation> -->
-      <div class="container">
-        <!-- Art Content -->
-        <div class="article clearfix">
+  <body>
+
           <div ng-view></div>
-        </div>
-      </div>
-    </div>
   </body>
 </html>
