@@ -8,11 +8,11 @@
   function OrderService($http, $q) {
 
     var service = {
-      getFoodOrderedByUserId: getFoodOrderedByUserId
+      getArtOrderedByUserId: getArtOrderedByUserId
     }
     return service;
 
-    function getFoodOrderedByUserId(userId) {
+    function getArtOrderedByUserId(userId) {
       var deferred = $q.defer();
       $http
       .get("/api/project/user/" + userId + "/orders")

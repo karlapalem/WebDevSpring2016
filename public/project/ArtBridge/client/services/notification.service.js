@@ -9,7 +9,7 @@
 
     var service = {
       getNotificationForUser: getNotificationForUser,
-      deliverFood: deliverFood
+      deliverArt: deliverArt
     }
     return service;
 
@@ -25,10 +25,10 @@
     }
 
     // Updates the order status to delevired
-    function deliverFood(orderId, notificationId) {
+    function deliverArt(orderId, notificationId) {
       var deferred = $q.defer();
       $http
-      .put("/api/project/user/" + notificationId + "/deliveredFood/" + orderId)
+      .put("/api/project/user/" + notificationId + "/deliveredArt/" + orderId)
       .success(function(response) {
         deferred.resolve(response);
       });

@@ -8,14 +8,14 @@
   function PaymentService($http, $q) {
 
     var service = {
-      payForFood: payForFood
+      payForArt: payForArt
     }
     return service;
 
-    function payForFood(token, order) {
+    function payForArt(token, order) {
       var deferred = $q.defer();
       $http
-      .post("/api/project/client/payForFood/" + token.id, order)
+      .post("/api/project/client/payForArt/" + token.id, order)
       .success(function(response) {
         deferred.resolve(response);
       })
