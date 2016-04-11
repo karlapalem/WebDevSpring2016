@@ -289,3 +289,7 @@ textarea.ng-valid.ng-touched {
   color: red;
   padding-bottom: 5px;
 }
+
+body {
+  overflow-x: hidden;
+}
