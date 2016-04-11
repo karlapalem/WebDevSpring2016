@@ -1,0 +1,31 @@
+
+<title>Artworks</title>
+<h1 class="text-center">Art Works</h1>
+
+<form name="myForm">
+<div class="col-md-4 col-md-offset-2">
+  <img ng-src="{{model.art.image}}" class="col-xs-12">
+</div>
+<div class="col-md-4">
+  <p>{{model.art.title}} - {{model.art.cuisine}} Art!</p>
+  <p>{{model.art.description}}</p>
+  <div class="form-group">
+    <google-places name="userLocation" ng-required="true" class="form-control" location=location></google-places>
+    <p class="errorValidationText" ng-show="myForm.userLocation.$invalid && myForm.userLocation.$touched">Please enter address</p>
+    <!-- <button ng-click="doSearch()" class="btn btn-large btn-primary">Search</button> -->
+    <textarea name="description" placeholder="no comments"
+              ng-minlength="5" ng-maxlength="20"
+              ng-model="model.art.comments"
+              type="text" class="form-control"></textarea>
+    </div>
+  <div class="form-group">
+    <button class="btn btn-default btn-success btn-block" stripe-checkout="model.doCheckout"
+      data-key="pk_test_E0oNL29chPrz1RqTKP73fGP2"
+      data-name="{{model.art.title}}"
+      data-description="{{model.art.description}}"
+      data-amount="{{model.art.cost * 100}}">Pay ${{model.art.cost}}
+    </button>
+    <button ng-disabled="myForm.$invalid" ng-click="model.home()" class="btn btn-default btn-primary btn-block">Home</button>
+  </div>
+</div>
+</form>

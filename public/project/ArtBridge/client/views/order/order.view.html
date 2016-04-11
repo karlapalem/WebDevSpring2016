@@ -1,0 +1,26 @@
+<title>My orders</title>
+<h1 ng-if="model.artItems.length != 0" class="text-center">My orders</h1>
+<div class="tab-content"> 
+  <div class="search-container clearfix"> 
+    <div class="col-md-12">
+      <div ng-repeat="art in model.artItems" class="art-item">
+        <div class="info">
+          <div class="title"><b>{{art.title}} - ${{art.cost}}</b></div>
+          <div class="date"><b>{{art.orderDate | date: 'short' }}</b></div>
+        </div>
+        <div class="art-image">
+          <img ng-src="{{art.image}}" class="col-xs-12">
+        </div>
+        <div class="info">
+          <div class="title"><b>{{art.cuisine}} Genre</b></div>
+          <div></div>
+        </div>
+      </div>
+      <div ng-if="model.artItems.length == 0">
+        <br>
+        <br>
+        <h3 class="text-center">No order history found. Click on ArtBridge to browse and buy artworks!</h3>
+      </div> 
+    </div>
+  </div>
+</div>

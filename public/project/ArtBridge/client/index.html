@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ArtApp">
+  <head>
+    <title>ArtBridge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap cdn -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet">
+    
+    <!-- Google API For JQuery, AngularJS & AngularJS Routing -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-cookies.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular-messages.min.js"></script>
+   
+    <!-- Stripe for credit card payments -->
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript" src="js/angular-stripe-checkout.js"></script>
+  
+    <!-- dialog -->
+    <script src="//cdn.bootcss.com/ng-dialog/0.5.5/js/ngDialog.min.js"></script>
+    <link href="//cdn.bootcss.com/ng-dialog/0.5.5/css/ngDialog.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/ng-dialog/0.5.5/css/ngDialog-theme-default.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/ng-dialog/0.5.5/css/ngDialog-theme-plain.min.css" rel="stylesheet">
+
+    <!-- Image -->
+    <script type="text/javascript" src="js/ng-file-upload-shim.min.js"></script>
+    <script type="text/javascript" src="js/ng-file-upload.min.js"></script>
+
+     <!-- // Location -->
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&libraries=places&language=en-US"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-resource.min.js"></script>
+
+    <!-- Loading -->
+    <!-- <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
+ -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-animate.js"></script>
+    <link rel='stylesheet' href='css/loading-bar.min.css' type='text/css' media='all' />
+    <!-- <script type='text/javascript' src='js/loading-bar.min.js'></script> -->
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
+
+    <!-- Declare application and its dependencies -->
+    <script src="app.js"></script>
+
+    <!-- Routing Info -->
+    <script src="config.js"></script>
+    
+    <!-- Services -->
+    <script src="services/user.service.js"></script>
+    <script src="services/payment.service.js"></script>
+    <script src="services/art.service.js"></script>
+    <script src="services/order.service.js"></script>
+    <script src="services/notification.service.js"></script>
+
+    <!-- Controllers -->  
+    <script src="views/header/header.controller.js"></script>
+    <script src="views/search/search.controller.js"></script>
+    <script src="views/art/art.controller.js"></script>
+    <script src="views/login/login.controller.js"></script>
+    <script src="views/search/search.controller.js"></script>
+    <script src="views/profile/profile.controller.js"></script>
+    <script src="views/register/register.controller.js"></script>
+    <script src="views/buyer/buyer.controller.js"></script>
+    <script src="views/seller/seller.controller.js"></script>
+    <script src="views/notification/notification.controller.js"></script>
+    <script src="views/artOffered/editArtOffered.controller.js"></script>
+    <script src="views/artOffered/artOffered.controller.js"></script>
+    <script src="views/order/order.controller.js"></script>
+    
+    <!-- Stylesheet -->
+    <link href="css/styles.css" rel="stylesheet">
+    <!--<link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/style1.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+
+  </head>
+
+  <body>   
+    <div class="container-fluid">
+      <!-- Middle and Right Header -->
+      <div ng-include="'views/header/header.view.html'"></div> <!-- <Header navigation> -->
+      <div class="container">
+        <!-- Art Content -->
+        <div class="article clearfix">
+          <div ng-view></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

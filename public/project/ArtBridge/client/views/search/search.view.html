@@ -1,0 +1,57 @@
+<form class="form-inline" role="search">
+    <div class="search-container clearfix">
+      <div class="tab-content">
+        <div class="col-md-12 col-md-offset-3">
+          <div class="form-group">
+
+            <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">Genre</span>
+              <select name="cuisine" ng-model="model.art.cuisine" class="form-control" type="text">
+                <option ng-repeat="c in model.cuisines" value="{{c}}">{{c}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <input name="keyword" ng-model="model.keyword" type="text" class="form-control" placeholder="Search..">
+            </div>
+           <!--  <div class="input-group">
+              <span class="input-group-addon">Keyword</span>
+              <input ng-model="model.keyword" type="Search" placeholder="Search..." class="form-control"/>
+            </div>
+ -->
+            <div class="input-group input-group-btn">
+              <button ng-click="model.searchArt(model.keyword, model.art.cuisine)"class="btn btn-info">
+                Search
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </div>
+            <div ng-show="model.artItems != null">
+              <a ng-click="model.sort('cost')" >Sort by price</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div ng-if="art.userId != model.user._id" ng-repeat="art in model.artItems | orderBy:model.predicate:model.reverse"
+               class="art-item">
+            <div class="info">
+              <div class="title"><b>{{art.cuisine}} Genre</b></div>
+            </div>
+            <div class="art-image">
+              <a ng-click="model.artDetails(art._id)" href=""><img ng-src="{{art.image}}" class="col-xs-12"></a>
+            </div>
+            <div class="info">
+              <div class="title"><b>{{art.title}} - ${{art.cost}}</b></div>
+              <button ng-click="model.artDetails(art._id)" class="btn btn-success price pull-right">
+                Buy Now</button>
+            </div>
+          </div>
+          <div ng-if="model.artItems.length == 0">
+            <br>
+            <br>
+            <h3 class="text-center">No art found in this genre. Sorry :( </h3>
+          </div>  
+        </div>
+      </div>
+    </div>
+</form>

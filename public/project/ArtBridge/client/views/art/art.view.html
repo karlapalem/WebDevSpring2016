@@ -1,0 +1,24 @@
+<div class="tab-content">
+  <div class="search-container  clearfix">
+    <div class="col-md-12">
+      <div ng-if="art.userId != model.user._id" ng-repeat="art in model.artItems" class="art-item">
+        <div class="info">
+          <div class="title"><b>{{art.cuisine}} Genre</b></div>
+        </div>
+        <div class="art-image">
+          <a ng-click="model.artDetails(art._id)" href=""><img ng-src="{{art.image}}" class="col-xs-12"></a>
+        </div>
+        <div class="info">
+          <div class="title"><b>{{art.title}} - ${{art.cost}}</b></div>
+          <button ng-click="model.artDetails(art._id)" class="btn btn-success price pull-right">Buy Now</button>
+        </div>
+      </div>
+      <div ng-if="model.artItems.length == 0">
+        <br>
+        <br>
+        <h3 class="text-center">Sorry! There is no artwork available to buy :(</h3>
+      </div>  
+    </div>
+  </div>
+</div>
+
