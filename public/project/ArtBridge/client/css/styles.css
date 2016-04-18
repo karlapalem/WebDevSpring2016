@@ -231,8 +231,8 @@ html, body, .container-fluid, .container {
 .jumbotron {
   background-image: url(/project/ArtBridge/client/images/banner1.jpg);
   background-size: cover;
-  padding-right:50px;
-  padding-left: 50px;
+  padding-right: 5px;
+  padding-left: 40px;
   height: 50%;
   color: #f5f5ff}
 
