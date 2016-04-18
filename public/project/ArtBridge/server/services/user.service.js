@@ -31,10 +31,9 @@ module.exports = function(app, auth, userModel, passport, localStrategy, GoogleS
 
   // SETTING STRATEGY
   passport.use(new GoogleStrategy({     
-      clientID: '509374382559-r7hte2in8f15kbthetk1ef4ods7aqmht.apps.googleusercontent.com',
-      clientSecret: 'owDS7d9ihJPqFvzoRpEohAjv', 
+      clientID: '447563987037-idnjkfdkj2cck9k1ms63gvu15septbad.apps.googleusercontent.com',
+      clientSecret: '1xd9KbVmomyA6aY22OZJpxi6',
       callbackURL: 'http://localhost:3000/auth/google/callback'
-      //callbackURL: 'http://cs5610-cguna.rhcloud.com/auth/google/callback'
     }, 
     function (token, refreshToken, profile, done) {
       process.nextTick(function () {
@@ -53,9 +52,9 @@ module.exports = function(app, auth, userModel, passport, localStrategy, GoogleS
   .get('/auth/google/callback',
     passport
     .authenticate('google', 
-    { failureRedirect: '/project/client/#/login' 
+    { failureRedirect: '/project/ArtBridge/client/#/login'
     }),
     function(req, res) {
-      res.redirect('/project/client/#/profile');
+      res.redirect('/project/ArtBridge/client/#/profile');
     });
 };
