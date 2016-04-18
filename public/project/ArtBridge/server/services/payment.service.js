@@ -1,7 +1,4 @@
 
-// Use createTransport api to provide service info
-// https://www.youtube.com/watch?v=EpQq3lqcjd4
-
 
 module.exports = function(app, auth, nodemailer, orderModel, userModel, artModel, notificationModel) {
   app.post("/api/project/client/payForArt/:tokenId", auth, payForArt);
@@ -10,7 +7,6 @@ module.exports = function(app, auth, nodemailer, orderModel, userModel, artModel
     service: "gmail",
     auth: {
         user: "poojithaprasaad@gmail.com",
-        // pass: "userpass"
         pass: "cshomeart"
     }
 });

@@ -36,12 +36,9 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular-resource.min.js"></script>
 
     <!-- Loading -->
-    <!-- <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
-    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
- -->
+
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-animate.js"></script>
     <link rel='stylesheet' href='css/loading-bar.min.css' type='text/css' media='all' />
-    <!-- <script type='text/javascript' src='js/loading-bar.min.js'></script> -->
     <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
 
     <!-- Declare application and its dependencies -->
@@ -74,20 +71,21 @@
     
     <!-- Stylesheet -->
     <link href="css/styles.css" rel="stylesheet">
-    <!--<link href="css/dashboard.css" rel="stylesheet">
-    <link href="css/style1.css" rel="stylesheet">-->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 
+    <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Sacramento' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <!-- Social Media Share -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5714f1a777ee1836"></script>
 
   </head>
 
   <body>
-
+  <!-- Did not include common divs (container) here because of jumbotron in the home page. It is not
+  possible to achieve a full page width jumbotron if it is present inside the container -->
           <div ng-view></div>
   </body>
 </html>
