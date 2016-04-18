@@ -12,7 +12,7 @@
     <div class="">
       <div ng-repeat="art in model.artItems" class="art-items col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <div class="info">
-          <div class="title"><b>{{art.cuisine}} Genre</b></div>
+          <div class="title"><b>{{art.cuisine}} Art</b></div>
         </div>
         <div class="art-image">
           <img ng-src="{{art.image}}" class="col-xs-12">
@@ -22,20 +22,23 @@
           <div ng-if="art.quantity != 0" class="options pull-right">
             <button title="Click to edit art deatils." data-toggle="tooltip"
                     data-placement="top" tooltip ng-click="model.editArt(art._id)"
-                    class="glyphicon glyphicon-pencil btn btn-success"></button>
+                    class="ion-edit btn btn-primary"></button>
             <button title="Click to delete this posting."
                     data-toggle="tooltip" data-placement="top"
                     tooltip ng-click="model.deleteArt(art._id)"
-                    class="glyphicon glyphicon-remove btn btn-danger"></button>
+                    class="ion-trash-a btn btn-danger"></button>
           </div>
           <div ng-if="art.quantity == 0" class="options pull-right">
             <button title="Already sold!" data-toggle="tooltip" data-placement="top"
                     tooltip ng-disabled="true" ng-click="model.editArt(art._id)"
-                    class="glyphicon glyphicon-pencil btn btn-success"></button>
+                    class="ion-edit btn btn-success"></button>
             <button title="Already sold!" data-toggle="tooltip" data-placement="top"
                     tooltip ng-disabled="true" ng-click="model.deleteArt(art._id)"
-                    class="glyphicon glyphicon-remove btn btn-danger"></button>
+                    class="ion-trash-a btn btn-danger"></button>
+            <div class="clearfix"></div>
           </div>
+          <div class="clearfix"></div>
+          <br>
         </div>
       </div>
     </div>

@@ -8,14 +8,14 @@
   <title>Notifications</title>
   <h1 ng-if="model.notifications.length != 0" class="text-center">Pending orders to fulfill</h1>
 
-  <div id="formTabsContent"  class="tab-content ">
+  <div id="formTabsContent"  class="tab-content">
     <div role="tabpanel" class="tab-pane fade in active" id="forms" aria-labelledby="formsTab">
       <div ng-if="model.notifications.length == 0">
         <br>
         <br>
         <h3 class="text-center">You don't have any orders to fulfill</h3>
       </div>  
-      <table ng-if="model.notifications.length != 0" class="table table-striped table-hover table-bordered">
+      <table ng-if="model.notifications.length != 0" class="table table-striped table-hover table-bordered my-forms">
         <thead>
           <tr>
             <th>From

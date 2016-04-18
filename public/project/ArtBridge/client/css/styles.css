@@ -229,7 +229,7 @@ html, body, .container-fluid, .container {
 
 
 .jumbotron {
-  background-image: url(/project/ArtBridge/client/images/banner4.jpg);
+  background-image: url(/project/ArtBridge/client/images/banner1.jpg);
   background-size: cover;
   padding-right:50px;
   padding-left: 50px;
@@ -293,4 +293,28 @@ textarea.ng-valid.ng-touched {
 
 body {
   overflow-x: hidden;
+}
+
+
+h1, h2, h3, h4, h5, h6, p, button, form, nav, dropdown-menu, body {
+  font-family: 'Droid Sans', sans-serif;
+
+}
+
+.ab-logo {
+  font-family: 'Sacramento', cursive;
+  font-size: 260%;
+  margin-top: 2px;
+}
+
+.my-forms {
+  border: 2px solid lightblue;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  background-color: lightgrey;
+  box-shadow: 0 0 3px white;
+  border-radius: 10px!important;
+
 }
