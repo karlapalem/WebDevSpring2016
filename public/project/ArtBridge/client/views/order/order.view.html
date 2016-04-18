@@ -8,8 +8,8 @@
 <h1 ng-if="model.artItems.length != 0" class="text-center">My orders</h1>
 <div class="tab-content"> 
   <div class="search-container clearfix"> 
-    <div class="col-md-12">
-      <div ng-repeat="art in model.artItems" class="art-item">
+    <div class="">
+      <div ng-repeat="art in model.artItems" class="art-item col-lg-6 col-md-6">
         <div class="info">
           <div class="title"><b>{{art.title}} - ${{art.cost}}</b></div>
           <div class="date"><b>{{art.orderDate | date: 'short' }}</b></div>

@@ -33,7 +33,9 @@
               </button>
             </div>
             <div ng-show="model.artItems != null">
-              <a ng-click="model.sort('cost')" >Sort by price</a>
+              <br>
+              <a ng-click="model.sort('cost')"><b>Sort by price</b></a>
+              <hr>
             </div>
           </div>
         </div>
@@ -41,7 +43,18 @@
         <div class="col-md-12">
           <div ng-if="art.userId != model.user._id" ng-repeat="art in model.artItems | orderBy:model.predicate:model.reverse"
                class="art-item col-lg-4 col-md-6 col-sm-6 sol-xs-12">
-            <div class="info">
+
+            <div class="thumbnail info">
+              <p class="title"><b>{{art.title}}</b></p>
+              <a ng-click="model.artDetails(art._id)" href=""><img class="img" ng-src="{{art.image}}"></a>
+              <div class="caption info">
+                <span class="title pull-left"><b>{{art.cuisine}} Art - </b><span style="color: darkgreen">{{art.cost}}$</span></span>
+                <a ng-click="model.artDetails(art._id)" class="btn btn-success pull-right" role="button">Buy Now</a>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+
+            <!--<div class="info">
               <div class="title"><b>{{art.cuisine}} Genre</b></div>
             </div>
 
@@ -53,14 +66,14 @@
               <div class="title"><b>{{art.title}} - ${{art.cost}}</b></div>
               <button ng-click="model.artDetails(art._id)" class="btn btn-success price pull-right">
                 Buy Now</button>
-            </div>
+            </div>-->
 
           </div>
 
           <div ng-if="model.artItems.length == 0">
             <br>
             <br>
-            <h3 class="text-center">No art found in this genre. Sorry :( </h3>
+            <h3 class="text-center">No art found in this category :/ </h3>
           </div>  
         </div>
       </div>
