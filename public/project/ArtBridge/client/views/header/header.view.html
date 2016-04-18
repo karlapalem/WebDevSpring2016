@@ -2,7 +2,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar,#navbar1" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -14,22 +14,23 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right user-area">
         <li>
-          <button ng-click="showNotifications()" class="btn btn-default" type="button">Pending orders
+          <button ng-click="showNotifications()" class="btn btn-default" type="button">
+            <span class="ion-clipboard"></span> Pending Orders
           </button>
         </li>
         <li>
           <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              <span class="glyphicon glyphicon-user"></span>
+              <span class="ion-android-person"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><a href="#/profile">Profile</a></li>
-              <li><a href="#/search">Search</a></li>
-              <li><a ng-href="#/seller">Add new Artwork</a></li>
-              <li><a ng-href="#/artOffered">My Artwork</a></li>
-              <li><a href="#/order">My Order history</a></li>
-              <li><a ng-click="logout()">Logout</a></li>
+              <li><a href="#/profile"><span class="ion-android-person"> Profile</a></li>
+              <li><a href="#/search"><span class="ion-search"></span> Search</a></li>
+              <li><a ng-href="#/seller"><span class="ion-plus"></span> Add new Artwork</a></li>
+              <li><a ng-href="#/artOffered"><span class="ion-images"></span> My Artwork</a></li>
+              <li><a href="#/order"><span class="ion-card"></span> My Order history</a></li>
+              <li><a ng-click="logout()"><span class="ion-log-out"></span> Logout</a></li>
             </ul>
           </div>
         </li>
@@ -37,17 +38,11 @@
     </div>
     </span>
     <span ng-show="!user">
-      <div id="navbar" class="navbar-collapse collapse">
+      <div id="navbar1" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right user-area">
-          <li>
-            <button ng-click="search()" class="btn btn-default" type="button">Search Artwork</button>
-          </li>
-          <!--<li>
-            <button ng-click="login()" class="btn btn-default" type="button">Login</button>
-          </li>
-           <li>
-            <button ng-click="signUp()" class="btn btn-default" type="button">Register</button>
-          </li>-->
+
+            <button ng-click="search()" class="btn btn-default" type="button"><span class="ion-search"></span> Search Artwork</button>
+
         </ul>
       </div>
     </span>

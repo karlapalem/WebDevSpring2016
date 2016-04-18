@@ -6,30 +6,35 @@
     <div class="article clearfix">
 
 <title>Artworks</title>
-<h1 class="text-center">Art Works</h1>
+<h1 class="text-center">{{model.art.title}}</h1>
+      <br>
 
 <form name="myForm">
-<div class="col-md-4 col-md-offset-2">
-  <img ng-src="{{model.art.image}}" class="col-xs-12">
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+  <img ng-src="{{model.art.image}}" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 </div>
-<div class="col-md-4">
-  <p>{{model.art.title}} - {{model.art.cuisine}} Art!</p>
-  <p>{{model.art.description}}</p>
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+  <blockquote>
+  <h5><p><b>Category:</b>  {{model.art.cuisine}} Art</p>
+  <p><b>Description:</b> {{model.art.description}}</p>
+  <p><b>Price: <span style="color: darkgreen"> {{model.art.cost}}$ </span></b></p></h5>
+    </blockquote>
+
   <div class="form-group">
-    <google-places name="userLocation" ng-required="true" class="form-control" location=location></google-places>
-    <p class="errorValidationText" ng-show="myForm.userLocation.$invalid && myForm.userLocation.$touched">Please enter address</p>
-    <!-- <button ng-click="doSearch()" class="btn btn-large btn-primary">Search</button> -->
-    <textarea name="description" placeholder="no comments"
+    <textarea name="description" placeholder="Write a comment"
               ng-minlength="5" ng-maxlength="20"
               ng-model="model.art.comments"
               type="text" class="form-control"></textarea>
+    <p><h5><b>Enter your address: </b></h5></p>
+    <google-places name="userLocation" ng-required="true" class="form-control" location=location></google-places>
+    <p class="errorValidationText" ng-show="myForm.userLocation.$invalid && myForm.userLocation.$touched">Please enter address</p>
     </div>
   <div class="form-group">
     <button class="btn btn-default btn-success btn-block" stripe-checkout="model.doCheckout"
       data-key="pk_test_E0oNL29chPrz1RqTKP73fGP2"
       data-name="{{model.art.title}}"
       data-description="{{model.art.description}}"
-      data-amount="{{model.art.cost * 100}}">Pay ${{model.art.cost}}
+      data-amount="{{model.art.cost * 100}}">Buy Now
     </button>
     <button ng-disabled="myForm.$invalid" ng-click="model.home()" class="btn btn-default btn-primary btn-block">Home</button>
   </div>

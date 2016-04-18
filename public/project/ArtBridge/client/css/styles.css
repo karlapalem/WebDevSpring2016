@@ -237,12 +237,13 @@ html, body, .container-fluid, .container {
   color: #f5f5ff}
 
 
-.art-item {
+/*.art-item {
   /*width: 45%;
-  float: left;*/
+  float: left;
+  background-color: white;
   box-shadow: 0px 0px 7px #dbdbde;
   margin: 0px;
-}
+}*/
 
 .art-item .art-image img {
   padding: 0;
@@ -256,8 +257,8 @@ html, body, .container-fluid, .container {
   font-size: 13px;
   color: #919191;
   font-weight: 300;
-  float: left;
-  margin: 10px;
+  /*float: left;*/
+  margin: 5px;
   padding-top: 8px;
 }
 
@@ -266,7 +267,7 @@ html, body, .container-fluid, .container {
   font-size: 14px;
   display: inline-block;
   text-decoration: none;
-  margin: 10px;
+
 }
 
 input.ng-invalid.ng-touched {

@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <h1>ArtBridge</h1>
-  <p>Connecting artists around the world! Register now to buy art or to sell your art</p>
+  <p>Connecting artists around the world! Register now to buy or sell art</p>
   <p class="pull-right" ng-show="!user">
     <button ng-click="login()" class="btn btn-info btn-lg">Login</button>
     <button ng-click="signUp()" class="btn btn-info btn-lg">Register</button></p>
@@ -19,21 +19,32 @@
   <div class="search-container clearfix">
     <h3>Latest artworks from all artists</h3>
     <hr>
-    <div class="">
+
+    <div class="row">
 
       <div ng-if="art.userId != model.user._id" ng-repeat="art in model.artItems" class="art-item col-lg-4 col-md-6 col-sm-6 col-xs-12">
 
-        <div class="info">
-          <div class="title"><b>{{art.cuisine}} Genre</b></div>
+        <div class="thumbnail info">
+          <p class="title"><b>{{art.title}}</b></p>
+          <a ng-click="model.artDetails(art._id)" href=""><img class="img" ng-src="{{art.image}}"></a>
+          <div class="caption info">
+            <span class="title pull-left"><b>{{art.cuisine}} Art - </b><span style="color: darkgreen">{{art.cost}}$</span></span>
+            <a ng-click="model.artDetails(art._id)" class="btn btn-success pull-right" role="button">Buy Now</a>
+            <div class="clearfix"></div>
+          </div>
         </div>
-        <div class="art-image img-responsive">
+
+        <!--<div class="info">
+          <div class="title"><b>{{art.cuisine}} Art</b></div>
+        </div>
+        <div class="art-image img-responsive img-thumbnail">
           <a ng-click="model.artDetails(art._id)" href=""><img ng-src="{{art.image}}" class="col-xs-12"></a>
         </div>
         <div class="info">
           <div class="title"><b>{{art.title}} - ${{art.cost}}</b></div>
           <button ng-click="model.artDetails(art._id)" class="btn btn-success price pull-right">Buy Now</button>
         </div>
-      </div>
+      </div>-->
       <div ng-if="model.artItems.length == 0">
         <br>
         <br>
