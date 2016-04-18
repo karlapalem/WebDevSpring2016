@@ -6,6 +6,7 @@
   .controller("HeaderController", HeaderController);
 
   function HeaderController($http, $q, $scope, $rootScope, $location, UserService) {
+
     $scope.showNotifications = showNotifications;
     $scope.logout = logout;
     $scope.login = login;
