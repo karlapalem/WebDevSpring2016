@@ -1,11 +1,32 @@
 <div class="jumbotron">
   <p><h1 class="">ArtBridge</h1></p>
   <p class="">Connecting artists around the world! Register now to buy or sell art</p>
-  <p class="pull-left" ng-show="!user">
-    <button ng-click="login()" class="btn btn-info btn-lg">Login</button>
-    <button ng-click="signUp()" class="btn btn-info btn-lg">Register</button></p>
+  <p class="pull-left">
+    <button ng-show="!user" ng-click="login()" class="btn btn-info btn-lg">Login</button>
+    <button ng-show="!user" ng-click="signUp()" class="btn btn-info btn-lg">Register</button>
+    <a href="#/art" onclick="autoPlayYouTubeModal()" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#videoModal"
+       data-theVideo="http://www.youtube.com/embed/QH2-TGUlwu4">
+      Demo <span class="ion-ios-videocam"></span>
+    </a>
+  </p>
   &nbsp;
 </div>
+
+<!-- Modal to play Youtube Demo video -->
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <div>
+          <iframe width="100%" height="350" src=""></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <span class="pull-right" style="margin-right: 8%; display: inline-block">
   Share us on:
