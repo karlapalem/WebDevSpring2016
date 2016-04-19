@@ -16,10 +16,10 @@
     init()
 
     function init() {
-      // Get cuisines
+      // Get genres
       cfpLoadingBar.start();
-      ArtService.getCuisines().then(function(cuisines) {
-        model.cuisines = cuisines;
+      ArtService.getGenres().then(function(genres) {
+        model.genres = genres;
       });
       if(artId) {
         // if(user._id === art.userId)
@@ -28,7 +28,7 @@
           if(user._id === art.userId) {
             console.log("trying to edit art" + art);
             model.art = art;
-            console.log(model.art.cuisine);
+            console.log(model.art.genre);
           } else {
             ngDialog.open({
               template: 'views/Dialog/wentWrong.dialog.view.html',

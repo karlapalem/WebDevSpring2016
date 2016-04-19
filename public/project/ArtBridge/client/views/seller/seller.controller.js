@@ -13,11 +13,11 @@
     model.addArt = addArt;
     var image, resizedImage;
 
-    getCuisines();
+    getGenres();
    
-    function getCuisines() {
-      ArtService.getCuisines().then(function(cuisines) {
-        model.cuisines = cuisines;
+    function getGenres() {
+      ArtService.getGenres().then(function(genres) {
+        model.genres = genres;
       });
     }
 

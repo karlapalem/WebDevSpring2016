@@ -27,11 +27,11 @@
             <br>
             <div class="form-group">
               <label for="category" class="control-label ">Tag a Category:</label>
-              <select ng-required="true"  name="cuisine" ng-model="model.art.cuisine"
+              <select ng-required="true"  name="genre" ng-model="model.art.genre"
                       class="form-control" type="text">
-                <option ng-repeat="c in model.cuisines" value="{{c}}">{{c}}</option>
+                <option ng-repeat="c in model.genres" value="{{c}}">{{c}}</option>
               </select>
-              <p class="errorValidationText" ng-show="myForm.cuisine.$invalid && myForm.cuisine.$touched">
+              <p class="errorValidationText" ng-show="myForm.genre.$invalid && myForm.genre.$touched">
                 Please tag an art genre</p>
             </div>
 
@@ -63,7 +63,7 @@
             </div>
 
             <div class="form-group">
-              <button ng-disabled="myForm.cuisine.$invalid || myForm.title.$invalid || myForm.description.$invalid || myForm.cost.$invalid"
+              <button ng-disabled="myForm.genre.$invalid || myForm.title.$invalid || myForm.description.$invalid || myForm.cost.$invalid"
                       ng-click="model.update(model.art)" class="btn btn-default btn-success btn-block">Update Art</button>
               <button ng-click="model.home()" class="btn btn-default btn-primary btn-block">Home</button>
             </div>

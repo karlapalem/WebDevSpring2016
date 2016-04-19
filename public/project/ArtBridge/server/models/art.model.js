@@ -7,7 +7,7 @@ module.exports = function(app, mongoose) {
   var artModel = mongoose.model("Art", artSchema);
 
   var api = {
-    getCuisine: getCuisine,
+    getGenre: getGenre,
     addArt: addArt,
     getArtOfferedByUser: getArtOfferedByUser,
     getArtById: getArtById,
@@ -22,15 +22,15 @@ module.exports = function(app, mongoose) {
     getAvailableArtItemsForUser: getAvailableArtItemsForUser,
     // Search page
     searchArt: searchArt,
-    searchArtByCuisineType: searchArtByCuisineType,
-    searchArtByKeyWordOrCuisine: searchArtByKeyWordOrCuisine
+    searchArtByGenreType: searchArtByGenreType,
+    searchArtByKeyWordOrGenre: searchArtByKeyWordOrGenre
   }
   return api;
 
-  // Returns all the cuisine 
-  function getCuisine() {
+  // Returns all the genre
+  function getGenre() {
     var deffered = q.defer();
-    deffered.resolve(artModel.schema.path('cuisine').enumValues);
+    deffered.resolve(artModel.schema.path('genre').enumValues);
     return deffered.promise;
   }
 
@@ -170,11 +170,11 @@ module.exports = function(app, mongoose) {
     return deferred.promise;
   }
 
-  function searchArtByCuisineType(cuisineType) {
-    console.log("Search by genre " +cuisineType);
+  function searchArtByGenreType(genreType) {
+    console.log("Search by genre " +genreType);
     var deferred = q.defer();
     artModel.find({quantity: {$gt: 0}})
-              .find({cuisine: cuisineType})
+              .find({genre: genreType})
               .sort({addedOn: -1})
               .find(function(err, artItems) {
                 if(err) {
@@ -186,13 +186,13 @@ module.exports = function(app, mongoose) {
     return deferred.promise;
   }
 
-  function searchArtByKeyWordOrCuisine(keyword, cuisineType) {
-    console.log("Search by genre " +cuisineType + " keyword " + keyword);
+  function searchArtByKeyWordOrGenre(keyword, genreType) {
+    console.log("Search by genre " +genreType + " keyword " + keyword);
     var deferred = q.defer();
     artModel.find({quantity: {$gt: 0}})
               .find({$or: [ {title: {$regex: keyword, $options: "i"}}, 
                             {description: {$regex: keyword, $options: "i"}},
-                            {cuisine: cuisineType}
+                            {genre: genreType}
                           ]})
               .sort({addedOn: -1})
               .find(function(err, artItems) {

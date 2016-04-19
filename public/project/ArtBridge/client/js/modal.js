@@ -1,9 +1,8 @@
 /**
  * Created by poojitha on 4/18/16.
  */
-//$(document).ready(function(){
-//    autoPlayYouTubeModal();
-//});
+
+autoPlayYouTubeModal();
 
 //FUNCTION TO GET AND AUTO PLAY YOUTUBE VIDEO FROM DATATAG
 function autoPlayYouTubeModal() {
@@ -11,7 +10,7 @@ function autoPlayYouTubeModal() {
     trigger.click(function () {
         var theModal = $(this).data("target"),
             videoSRC = $(this).attr("data-theVideo"),
-            videoSRCauto = videoSRC + "?autoplay=1";
+            videoSRCauto = videoSRC + "?autoplay=0";
         $(theModal + ' iframe').attr('src', videoSRCauto);
         $(theModal + ' button.close').click(function () {
             $(theModal + ' iframe').attr('src', videoSRC);

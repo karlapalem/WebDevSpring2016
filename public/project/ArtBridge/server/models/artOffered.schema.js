@@ -5,7 +5,7 @@ module.exports = function(mongoose) {
     "artId": String,
     "artName": String,
     "artType": String,
-    "artCuisine": String,
+    "artGenre": String,
     "orderDate": Date,
     "alreadyDelivered": Boolean
   });

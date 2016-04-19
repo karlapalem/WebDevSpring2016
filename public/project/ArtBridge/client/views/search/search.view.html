@@ -13,8 +13,8 @@
 
             <div class="input-group">
               <span class="input-group-addon" id="sizing-addon2">Category</span>
-              <select name="cuisine" ng-model="model.art.cuisine" class="form-control" type="text">
-                <option ng-repeat="c in model.cuisines" value="{{c}}">{{c}}</option>
+              <select name="genre" ng-model="model.art.genre" class="form-control" type="text">
+                <option ng-repeat="c in model.genres" value="{{c}}">{{c}}</option>
               </select>
             </div>
 
@@ -27,7 +27,7 @@
             </div>
  -->
             <div class="input-group input-group-btn">
-              <button ng-click="model.searchArt(model.keyword, model.art.cuisine)"class="btn btn-info">
+              <button ng-click="model.searchArt(model.keyword, model.art.genre)"class="btn btn-info">
                 Search
                 <span class="glyphicon glyphicon-search"></span>
               </button>
@@ -48,14 +48,14 @@
               <p class="title"><b>{{art.title}}</b></p>
               <a ng-click="model.artDetails(art._id)" href=""><img class="img" ng-src="{{art.image}}"></a>
               <div class="caption info">
-                <span class="title pull-left"><b>{{art.cuisine}} Art - </b><span style="color: darkgreen">{{art.cost}}$</span></span>
+                <span class="title pull-left"><b>{{art.genre}} Art - </b><span style="color: darkgreen">{{art.cost}}$</span></span>
                 <a ng-click="model.artDetails(art._id)" class="btn btn-success pull-right" role="button">Buy Now</a>
                 <div class="clearfix"></div>
               </div>
             </div>
 
             <!--<div class="info">
-              <div class="title"><b>{{art.cuisine}} Genre</b></div>
+              <div class="title"><b>{{art.genre}} Genre</b></div>
             </div>
 
             <div class="art-image">

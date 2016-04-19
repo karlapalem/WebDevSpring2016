@@ -11,18 +11,18 @@
     model.artItems = null;
     model.artDetails = artDetails;
 
-    getCuisines();   
-    function getCuisines() {
-      ArtService.getCuisines().then(function(cuisines) {
-        model.cuisines = cuisines;
+    getGenres();
+    function getGenres() {
+      ArtService.getGenres().then(function(genres) {
+        model.genres = genres;
       });
     }
 
-    function searchArt(keyword, cuisineType) {
+    function searchArt(keyword, genreType) {
       cfpLoadingBar.start();
-      console.log(cuisineType);
+      console.log(genreType);
       console.log(keyword);
-      if(keyword == undefined && cuisineType == undefined) {
+      if(keyword == undefined && genreType == undefined) {
         ngDialog.open({
           template: 'views/Dialog/searchArt.dialog.view.html',
         });
@@ -30,7 +30,7 @@
         if(keyword == undefined || keyword == "") {
           keyword = "emptyKeyword";
         }
-        ArtService.searchArt(keyword, cuisineType).then(function (artItems) {
+        ArtService.searchArt(keyword, genreType).then(function (artItems) {
           console.log(artItems);
           model.artItems = artItems;
         });

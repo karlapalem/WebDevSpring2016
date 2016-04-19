@@ -1,7 +1,7 @@
 module.exports = function(app, auth, artModel, userModel, multipart) {
 
   app.post("/api/project/user/:userId/art", auth, addArt);
-  app.get("/api/project/art/cuisine", getCuisine);
+  app.get("/api/project/art/genre", getGenre);
   app.post("/api/project/user/:userId/artOffered", auth, getArtOfferedByUser);
   app.get("/api/project/art/:artId", auth, getArtById);
   app.delete("/api/project/art/:artId", auth, deleteArtById);
@@ -11,7 +11,7 @@ module.exports = function(app, auth, artModel, userModel, multipart) {
   app.get("/api/project/art", getAvailableArtItems);
   app.get("/api/project/user/:userId/art", getAvailableArtItemsForUser);
   // Search page
-  app.get("/api/project/art/search/:keyword/cuisine/:cuisineType", searchArt);
+  app.get("/api/project/art/search/:keyword/genre/:genreType", searchArt);
   
   // Adds artItem to db and returns all the artItems for given userId
   // 1) Update art table
@@ -28,9 +28,9 @@ module.exports = function(app, auth, artModel, userModel, multipart) {
     });
   }
 
-  function getCuisine(req, res) {
-    artModel.getCuisine().then(function(cuisines) {
-      res.json(cuisines);
+  function getGenre(req, res) {
+    artModel.getGenre().then(function(genres) {
+      res.json(genres);
     });
   }
 
@@ -76,17 +76,17 @@ module.exports = function(app, auth, artModel, userModel, multipart) {
   function searchArt(req, res) {
     console.log("Searching for this " +req.params.keyword);
     var keyword = req.params.keyword;
-    var cuisineType = req.params.cuisineType;
-    if(keyword == "emptyKeyword" && cuisineType != "undefined") {
-      artModel.searchArtByCuisineType(cuisineType).then(function(artItems) {
+    var genreType = req.params.genreType;
+    if(keyword == "emptyKeyword" && genreType != "undefined") {
+      artModel.searchArtByGenreType(genreType).then(function(artItems) {
         res.json(artItems);
       });
-    } else if(keyword != "emptyKeyword" && cuisineType == "undefined") {
+    } else if(keyword != "emptyKeyword" && genreType == "undefined") {
       artModel.searchArt(keyword).then(function(artItems) {
         res.json(artItems);
       });
-    } else if(keyword != "emptyKeyword" && cuisineType != "undefined") {
-      artModel.searchArtByKeyWordOrCuisine(keyword, cuisineType).then(function(artItems) {
+    } else if(keyword != "emptyKeyword" && genreType != "undefined") {
+      artModel.searchArtByKeyWordOrGenre(keyword, genreType).then(function(artItems) {
         res.json(artItems);
       });
     }

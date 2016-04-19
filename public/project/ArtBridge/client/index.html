@@ -43,12 +43,12 @@
 
     <!-- Declare application and its dependencies -->
     <script src="app.js"></script>
+    <script src="js/modal.js"></script>
 
     <!-- Routing Info -->
     <script src="config.js"></script>
     
     <!-- Services -->
-    <script src="js/modal.js"></script>
     <script src="services/user.service.js"></script>
     <script src="services/payment.service.js"></script>
     <script src="services/art.service.js"></script>
@@ -85,8 +85,8 @@
   </head>
 
   <body>
-  <!-- Did not include common divs (container) here because of jumbotron in the home page. It is not
-  possible to achieve a full page width jumbotron if it is present inside the container -->
+  <!-- Did not include common divs (container, and header) here because of jumbotron in the home page. It is not
+  possible to achieve a full page width jumbotron if it is present inside a container -->
           <div ng-view></div>
   </body>
 </html>

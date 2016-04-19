@@ -23,7 +23,7 @@ module.exports = function(app, auth, orderModel, userModel, artModel) {
                 "description": artItems[k].description,
                 "orderDate": orderItems[j].orderDate,
                 "image": artItems[k].image,
-                "cuisine": artItems[k].cuisine
+                "genre": artItems[k].genre
               }
               orderedArtItems.push(orderedItem);
             }

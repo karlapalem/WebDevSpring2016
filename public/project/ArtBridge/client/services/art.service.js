@@ -9,7 +9,7 @@
 
     var service = {
       addArt: addArt,
-      getCuisines : getCuisines,      
+      getGenres : getGenres,
       getArtById: getArtById,
       
       deleteArtById: deleteArtById,
@@ -37,10 +37,10 @@
     }
 
 
-    function getCuisines() {
+    function getGenres() {
       var deferred = $q.defer();
       $http
-      .get("/api/project/art/cuisine")
+      .get("/api/project/art/genre")
       .success(function(response) {
         deferred.resolve(response);
       });
@@ -142,10 +142,10 @@
       return deferred.promise;
     }
 
-    function searchArt(keyword, cuisineType) {
+    function searchArt(keyword, genreType) {
       var deferred = $q.defer();
       $http
-      .get("/api/project/art/search/" + keyword + "/cuisine/" +cuisineType)
+      .get("/api/project/art/search/" + keyword + "/genre/" +genreType)
       .success(function(response) {
         deferred.resolve(response);
       });
