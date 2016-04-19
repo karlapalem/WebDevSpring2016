@@ -45,8 +45,8 @@ mongoose.connect(mongodb_connection_string);
 var db = mongoose.connection;
 
 var userSchema = require("./public/project/ArtBridge/server/models/user.schema.js")(mongoose);
-//var userModel = mongoose.model("NUser", userSchema);
-var userModel = mongoose.model("admin", userSchema);
+var userModel = mongoose.model("NUser", userSchema);
+//var userModel = mongoose.model("admin", userSchema);
 
 passport.use(new localStrategy(
     function (username, password, done) {
