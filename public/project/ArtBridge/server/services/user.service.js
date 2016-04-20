@@ -33,7 +33,8 @@ module.exports = function(app, auth, userModel, passport, localStrategy, GoogleS
   passport.use(new GoogleStrategy({     
       clientID: '447563987037-idnjkfdkj2cck9k1ms63gvu15septbad.apps.googleusercontent.com',
       clientSecret: '1xd9KbVmomyA6aY22OZJpxi6',
-      callbackURL: 'http://localhost:3000/auth/google/callback'
+      //callbackURL: 'http://localhost:3000/auth/google/callback'
+        callbackURL: 'http://webdev2016-karlapalemp.rhcloud.com/auth/google/callback'
     }, 
     function (token, refreshToken, profile, done) {
       process.nextTick(function () {
