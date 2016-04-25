@@ -1,3 +1,4 @@
+
 (function() {
     angular
         .module("FormBuilderApp")
@@ -13,7 +14,7 @@
 
             user.emails = user.emails.trim().split(",");
 
-            UserService.createUser(user).then(function(users) {
+            UserService.register(user).then(function(users) {
 
                 UserService.findUserByUsername(user.username).then(function (newUser) {
 

@@ -4,16 +4,16 @@ module.exports = function(db, mongoose) {
 
     var userSchema = require("./user.schema.server.js")(mongoose);
 
-    var userModel = mongoose.model('User', userSchema);
+    var userModel = mongoose.model('AssignmentUser', userSchema);
 
     var api = {
         createUser: createUser,
         findUserById: findUserById,
         findAllUsers: findAllUsers,
         updateUserById: updateUserById,
-        deleteUserId: deleteUserById,
+        deleteUserById: deleteUserById,
         findUserByUsername: findUserByUsername,
-        findUserByCredentials: findUserByCredentials
+        findUserByCredentials: findUserByCredentials,
     };
     return api;
 
@@ -28,8 +28,7 @@ module.exports = function(db, mongoose) {
     }
 
     function findAllUsers() {
-
-        return mock;
+        return userModel.find({});
     }
 
     function updateUserById(userId, user) {

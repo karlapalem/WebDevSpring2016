@@ -8,39 +8,42 @@
     function UserService($http, $q, $rootScope) {
 
         var service = {
-            findUserByCredentials: findUserByCredentials,
+
+            login: login,
+
             findUserByUsername: findUserByUsername,
+
             findAllUsers: findAllUsers,
+
+            register: register,
+
             createUser: createUser,
+
             deleteUserById: deleteUserById,
+
             updateUser: updateUser,
+
             findUserById: findUserById,
+
             getCurrentUser: getCurrentUser,
+
             setCurrentUser: setCurrentUser,
+
             logout: logout
         };
         return service;
 
-        function findUserByCredentials(username, password) {
+        function login(user) {
 
-            var deferred = $q.defer();
+            return $http.post("/api/assignment/login", user);
 
-            var url = "/api/assignment/user?username=:username&password=:password";
-            url = url.replace(":username", username);
-            url = url.replace(":password", password);
-
-            $http.get(url).success (function (response) {
-                deferred.resolve(response);
-            });
-
-            return deferred.promise;
         }
 
         function findUserByUsername(username) {
 
             var deferred = $q.defer();
 
-            var url = "/api/assignment/user?username=:username";
+            var url = "/api/assignment/admin/user?username=:username";
             url = url.replace(":username", username);
 
             $http.get(url).success (function (response) {
@@ -50,13 +53,26 @@
             return deferred.promise;
         }
 
-        function findAllUsers(callback) {
+        function findAllUsers() {
 
             var deferred = $q.defer();
 
-            var url = "/api/assignment/user";
+            var url = "/api/assignment/admin/user";
 
             $http.get(url).success (function (response) {
+                deferred.resolve(response);
+            });
+
+            return deferred.promise;
+        }
+
+        function register(user) {
+
+            var deferred = $q.defer();
+
+            var url = "/api/assignment/register";
+
+            $http.post(url, user).success (function (response) {
                 deferred.resolve(response);
             });
 
@@ -67,7 +83,7 @@
 
             var deferred = $q.defer();
 
-            var url = "/api/assignment/user";
+            var url = "/api/assignment/admin/user";
 
             $http.post(url, user).success (function (response) {
                 deferred.resolve(response);
@@ -80,7 +96,7 @@
 
             var deferred = $q.defer();
 
-            var url = "/api/assignment/user/:id";
+            var url = "/api/assignment/admin/user/:id";
             url = url.replace(":id", userID);
 
             $http.delete(url).success (function (response) {
@@ -94,7 +110,7 @@
 
             var deferred = $q.defer();
 
-            var url = "/api/assignment/user/:id";
+            var url = "/api/assignment/admin/user/:id";
             url = url.replace(":id", userID);
 
             $http.put(url, user).success (function (response) {
@@ -108,7 +124,7 @@
 
             var deferred = $q.defer();
 
-            var url = "/api/assignment/user/:id";
+            var url = "/api/assignment/admin/user/:id";
             url = url.replace(":id", userID);
 
             $http.get(url).success (function (response) {

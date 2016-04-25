@@ -1,6 +1,3 @@
-/**
- * Created by poojitha on 4/1/16.
- */
 "use strict"
 
 module.exports = function (mongoose) {
@@ -12,7 +9,8 @@ module.exports = function (mongoose) {
         firstName: String,
         lastName: String,
         emails: [String],
-        phones: [String]
+        phones: [String],
+        roles: [String]
 
     }, {collection: 'assignment.user'});
 

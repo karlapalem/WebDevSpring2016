@@ -18,7 +18,7 @@
 
             <form action="" id="my-form">
 
-                <div field-sortable field-axis="y">
+                <div field-sortable field-sortable-callback="model.sortFields(start, end)" field-axis="y">
 
                     <div class="row" ng-repeat="field in model.fields">
 
@@ -106,7 +106,7 @@
 
                         </div>
 
-                        <div class="col-md-4 text-center" style="padding-top: 26px">
+                        <div class="col-md-4 text-center top-pad">
 
                             <span class="glyphicon glyphicon-pencil hover" ng-click="model.editField($index)"></span>
                             <span class="glyphicon glyphicon-remove hover" ng-click="model.removeField($index)"></span>

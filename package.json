@@ -1,7 +1,7 @@
 {
-  "name": "OpenShift-Sample-App",
+  "name": "WebDevelopment",
   "version": "1.0.0",
-  "description": "OpenShift Sample Application",
+  "description": "Web Development CS5610",
   "keywords": [
     "OpenShift",
     "Node.js",
@@ -16,35 +16,25 @@
   "homepage": "http://www.openshift.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/origin-server"
+    "url": "https://github.com/openshift/origin-server"
   },
   "engines": {
     "node": ">= 0.6.0",
     "npm": ">= 1.0.0"
   },
   "dependencies": {
-    "angular-loading-bar": "^0.8.0",
-    "body-parser": "^1.14.1",
-    "bower": "^1.6.8",
-    "connect-multiparty": "^2.0.0",
-    "cookie-parser": "^1.4.0",
-    "cookieparser": "^0.1.0",
-    "express": "~3.4.4",
-    "express-session": "^1.12.1",
-    "express-sessions": "^1.0.5",
-    "fs": "0.0.2",
-    "mongoose": "^4.2.7",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
+    "express": "^3.4.8",
+    "express-session": "^1.13.0",
+    "mongojs": "^2.3.0",
+    "mongoose": "^4.4.7",
     "multer": "^1.1.0",
-    "ng-dialog": "^0.5.5",
-    "ng-file-upload": "^10.1.8",
-    "nodemailer": "^1.10.0",
+    "node-uuid": "^1.4.7",
     "passport": "^0.3.2",
-    "passport-google-oauth": "^0.2.0",
     "passport-local": "^1.0.0",
-    "q": "^1.4.1",
-    "stripe": "^4.1.0",
-    "underscore": "^1.8.3",
-    "underscore-node": "^0.1.2"
+    "q": "^1.4.1"
   },
   "devDependencies": {},
   "bundleDependencies": [],

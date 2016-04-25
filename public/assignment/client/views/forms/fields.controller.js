@@ -18,6 +18,8 @@
         vm.addField = addField;
         vm.editField = editField;
 
+        vm.sortFields = sortFields;
+
         vm.oldIndex = -1;
 
         var formId = -1;
@@ -235,6 +237,25 @@
                     $scope.fields = vm.fields;
 
                 });
+        }
+
+        function sortFields(start, end) {
+
+            FieldService.sortFields(formId, start, end)
+
+                .then(
+
+                    function (response) {
+
+                    },
+
+                    function (err) {
+
+                        vm.error = err;
+
+                    }
+                );
+
         }
     }
 
